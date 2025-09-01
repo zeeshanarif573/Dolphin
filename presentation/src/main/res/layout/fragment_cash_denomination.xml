@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.auth.cash_denomination.CashDenominationFragment">
+    tools:context=".features.ui.auth.cash_denomination.CashDenominationFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

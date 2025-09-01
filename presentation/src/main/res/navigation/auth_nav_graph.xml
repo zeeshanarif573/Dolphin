@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/auth_nav_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.retail.dolphinpos.presentation.features.ui.auth.splash.SplashFragment"
+        android:label="SplashFragment">
+        <action
+            android:id="@+id/action_splashFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_selectRegisterFragment"
+            app:destination="@id/selectRegisterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.retail.dolphinpos.presentation.features.ui.auth.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_rselectRegisterFragment2"
+            app:destination="@id/selectRegisterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectRegisterFragment"
+        android:name="com.retail.dolphinpos.presentation.features.ui.auth.select_register.SelectRegisterFragment"
+        android:label="fragment_select_register"
+        tools:layout="@layout/fragment_select_register">
+        <action
+            android:id="@+id/action_selectRegisterFragment_to_pinCodeFragment"
+            app:destination="@id/pinCodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pinCodeFragment"
+        android:name="com.retail.dolphinpos.presentation.features.ui.auth.pin_code.PinCodeFragment"
+        android:label="fragment_pin_code"
+        tools:layout="@layout/fragment_pin_code">
+        <action
+            android:id="@+id/action_pinCodeFragment_to_cashDenominationFragment"
+            app:destination="@id/cashDenominationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cashDenominationFragment"
+        android:name="com.retail.dolphinpos.presentation.features.ui.auth.cash_denomination.CashDenominationFragment"
+        android:label="fragment_cash_denomination"
+        tools:layout="@layout/fragment_cash_denomination" />
+</navigation>

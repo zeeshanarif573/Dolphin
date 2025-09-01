@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.reports.transaction_activity.TransactionActivityFragment">
+    tools:context=".features.ui.reports.transaction_activity.TransactionActivityFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

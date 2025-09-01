@@ -1,5 +1,113 @@
 <resources>
-    <string name="app_name">Presentation</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="app_name">Dolphin Pos</string>
+    <string name="hello_blank_fragment">Hello Blank</string>
+    <string name="retail_pos_logo_content_description">Retail Pos Logo</string>
+    <string name="let_s_start">Let’s Start</string>
+    <string name="let_s_get_started">Let’s Get Started!</string>
+    <string name="log_in_to_your_retail_pos_system_and_manage_transactions_effortlessly">Log in to your Retail POS system and \n manage transactions effortlessly</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="password">Password*</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="username">Username*</string>
+    <string name="login">Login</string>
+    <string name="you_re_almost_ready_to_start_your_shift_please_select_your_register_to_continue">You\'re almost ready to start your shift. Please select your register to continue.</string>
+    <string name="button_continue">Continue</string>
+    <string name="select_register">Select Register</string>
+    <string name="welcome_username">Welcome %1$s!</string>
+    <string name="select_register_hint">--Select Register--</string>
+    <string name="enter_pin_code">Enter PIN Code</string>
+    <string name="clear">Clear</string>
+    <string name="next">Next</string>
+    <string name="_0">0</string>
+    <string name="_3">3</string>
+    <string name="_2">2</string>
+    <string name="_1">1</string>
+    <string name="_6">6</string>
+    <string name="_5">5</string>
+    <string name="_4">4</string>
+    <string name="_9">9</string>
+    <string name="_8">8</string>
+    <string name="_7">7</string>
+    <string name="_00">00</string>
+    <string name="cash">Cash</string>
+    <string name="_0_00">$ 0.00</string>
+    <string name="cash_tray">Cash Tray</string>
+    <string name="coin_tray">Coins Tray</string>
+    <string name="default_count">Count: 0</string>
+    <string name="counter_label">Counter</string>
+    <string name="counting_cash_in_drawer">Counting Cash in Drawer</string>
+    <string name="save_and_start_batch">Save and Start Batch</string>
+    <string name="open_cash_drawer">Open Cash Drawer</string>
+    <string name="coins_tray">Coins Tray</string>
+    <string name="cash_1">CASH_1</string>
+    <string name="cash_5">CASH_5</string>
+    <string name="cash_10">CASH_10</string>
+    <string name="cash_20">CASH_20</string>
+    <string name="cash_50">CASH_50</string>
+    <string name="cash_100">CASH_100</string>
+    <string name="coin_0_01">COIN_0.01</string>
+    <string name="coin_0_05">COIN_0.05</string>
+    <string name="coin_0_1">COIN_0.1</string>
+    <string name="coin_0_25">COIN_0.25</string>
+    <string name="dollar_one">$1</string>
+    <string name="dollar_five">$5</string>
+    <string name="dollar_ten">$10</string>
+    <string name="dollar_twenty">$20</string>
+    <string name="dollar_fifty">$50</string>
+    <string name="dollar_hundred">$100</string>
+    <string name="cent_one">$0.01</string>
+    <string name="cent_five">$0.05</string>
+    <string name="cent_ten">$0.10</string>
+    <string name="cent_twenty_five">$0.25</string>
+    <string name="count_with_value">Count: %1$d</string>
+    <string name="ok">OK</string>
+    <string name="no">NO</string>
+
+
+    <string name="error">Error</string>
+    <string name="unknown_error_occurred">Unknown Error Occurred</string>
+    <string name="printer_is_ready">Printer is ready</string>
+    <string name="printer_encountered_an_error">Printer encountered an error</string>
+    <string name="communication_error">Communication error: %1$s</string>
+    <string name="printer_is_out_of_paper">Printer is out of paper</string>
+    <string name="no_saved_printer_details">No saved printer details</string>
+    <string name="printer_is_null_during_drawer_open">Printer is null during drawer open</string>
+    <string name="failed_to_print_after_retry">Failed to print after retry</string>
+    <string name="failed_to_open_printer">Failed to open printer</string>
+    <string name="printer_is_null_during_print">Printer is null during print</string>
+    <string name="currency_format">$%.2f</string>
+
+    <string name="select_printer_interface">Select interface</string>
+    <string name="network">Network</string>
+    <string name="classic_bluetooth">Bluetooth</string>
+    <string name="bluetooth_low_energy">Bluetooth Low Energy</string>
+    <string name="usb">USB</string>
+
+    <string name="not_find_data">cannot find any printer</string>
+    <string name="wifi_off">WiFi OFF. Please open wifi for searching printers</string>
+    <string name="wifi_not_connect">WiFi not connected. Please connect your ssid for searching printers</string>
+    <string name="bluetooth_off">Bluetooth OFF. Please open Bluetooth for searching printers</string>
+    <string name="usb_permission">USB Device Connect Permission</string>
+    <string name="no_permission">Cannot continue without permission:</string>
+    <string name="determine_model">Model Determination</string>
+
+    <string name="camera_permission_title">Camera Permission Needed</string>
+    <string name="camera_permission_description">This app requires camera access to scan barcodes.</string>
+    <string name="allow">Allow</string>
+    <string name="camera_permission_denied">Permission Denied</string>
+    <string name="camera_permission_denied_description">Camera permission is required. Please enable it in the app settings.</string>
+
+
+    <string name="settings">Settings</string>
+    <string name="cancel">Cancel</string>
+    <string name="age_verification">Age Verification</string>
+    <string name="age_verification_description">This sale includes restricted items that require age confirmation before proceeding. Please scan a valid Driver License.</string>
+    <string name="manual_verification">Manual Verification</string>
+    <string name="scan_id">Scan ID</string>
+    <string name="cash_drawer">Cash Drawer</string>
+    <string name="please_enter_reason_for_opening_cash_drawer">Please enter reason for opening cash drawer</string>
+    <string name="save">Save</string>
+    <string name="enter_reason">Enter Reason</string>
+    <string name="example_cash_change">Example : Cash Change</string>
+
 </resources>

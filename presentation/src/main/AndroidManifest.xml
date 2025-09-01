@@ -9,16 +9,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DolphinPOS">
         <activity
-            android:name=".features.setup.SetupActivity"
-            android:exported="false" />
+            android:name=".features.ui.setup.SetupActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"/>
         <activity
-            android:name=".features.reports.ReportsActivity"
-            android:exported="false" />
+            android:name=".features.ui.reports.ReportsActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"/>
         <activity
-            android:name=".features.home.HomeActivity"
-            android:exported="false" />
+            android:name=".features.ui.home.HomeActivity"
+            android:exported="false"
+            android:screenOrientation="landscape"/>
         <activity
-            android:name=".features.auth.AuthActivity"
+            android:name=".features.ui.auth.AuthActivity"
             android:exported="true"
             android:screenOrientation="landscape">
             <intent-filter>

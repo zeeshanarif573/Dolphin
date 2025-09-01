@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.setup.creditcard_processing.CreditCardProcessingFragment">
+    tools:context=".features.ui.setup.creditcard_processing.CreditCardProcessingFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
