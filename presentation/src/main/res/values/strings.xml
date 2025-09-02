@@ -37,6 +37,7 @@
     <string name="counter_label">Counter</string>
     <string name="counting_cash_in_drawer">Counting Cash in Drawer</string>
     <string name="save_and_start_batch">Save and Start Batch</string>
+    <string name="start_batch">Start Batch</string>
     <string name="open_cash_drawer">Open Cash Drawer</string>
     <string name="coins_tray">Coins Tray</string>
     <string name="cash_1">CASH_1</string>

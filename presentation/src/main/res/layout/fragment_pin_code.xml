@@ -1,14 +1,228 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".features.ui.auth.pin_code.PinCodeFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/bgImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:contentDescription="@string/retail_pos_logo_content_description"
+        android:scaleType="centerCrop"
+        android:src="@drawable/splash_background_image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bgImage">
 
-</FrameLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvCurrentTime"
+                    style="@style/TextAppearance.Display.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="01:51 PM"
+                    app:fontFamily="@font/general_sans_medium" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/tvCurrentDate"
+                    style="@style/TextAppearance.Heading.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/text_view_title"
+                    android:text="Thursday, January 11"
+                    app:fontFamily="@font/general_sans_medium" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </RelativeLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginVertical="@dimen/_40sdp"
+            android:layout_weight="1"
+            app:cardBackgroundColor="@color/white">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/enter_pin_code_label"
+                    style="@style/TextAppearance.Heading.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="@string/enter_pin_code"
+                    android:textColor="@color/black"
+                    app:fontFamily="@font/general_sans_medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/pinText"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginHorizontal="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/space_24"
+                    android:background="@drawable/edittext_box"
+                    android:inputType="none"
+                    android:letterSpacing="5"
+                    android:maxLength="4"
+                    android:fontFamily="@font/general_sans_semi_bold"
+                    android:textSize="@dimen/text_heading_medium"
+                    android:textAlignment="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/enter_pin_code_label" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/keypadContainer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="@id/pinText"
+                    app:layout_constraintStart_toStartOf="@id/pinText"
+                    app:layout_constraintTop_toBottomOf="@id/pinText">
+
+                    <!-- Flow layout for equal distribution -->
+                    <androidx.constraintlayout.helper.widget.Flow
+                        android:id="@+id/keypadFlow"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:constraint_referenced_ids="keypad_action_button_seven,keypad_action_button_eight,keypad_action_button_nine,
+            keypad_action_button_four,keypad_action_button_five,keypad_action_button_six,
+            keypad_action_button_one,keypad_action_button_two,keypad_action_button_three,
+            keypad_action_button_clear,keypad_action_button_zero,keypad_action_button_next"
+                        app:flow_horizontalGap="@dimen/_5sdp"
+                        app:flow_maxElementsWrap="3"
+                        app:flow_verticalGap="@dimen/_5sdp"
+                        app:flow_wrapMode="chain"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <!-- Buttons -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/keypad_action_button_seven"
+                        style="@style/KeypadButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:text="@string/_7" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/keypad_action_button_eight"
+                        style="@style/KeypadButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:text="@string/_8" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/keypad_action_button_nine"
+                        style="@style/KeypadButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:text="@string/_9" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/keypad_action_button_four"
+                        style="@style/KeypadButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:text="@string/_4"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/keypad_action_button_five"
+                        style="@style/KeypadButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:text="@string/_5" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/keypad_action_button_six"
+                        style="@style/KeypadButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:text="@string/_6" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/keypad_action_button_one"
+                        style="@style/KeypadButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:text="@string/_1"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/keypad_action_button_two"
+                        style="@style/KeypadButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:text="@string/_2" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/keypad_action_button_three"
+                        style="@style/KeypadButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:text="@string/_3" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/keypad_action_button_clear"
+                        style="@style/ActionButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:text="@string/clear"
+                        tools:ignore="MissingConstraints" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/keypad_action_button_zero"
+                        style="@style/KeypadButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:text="@string/_0" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/keypad_action_button_next"
+                        style="@style/ActionButton"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_25sdp"
+                        android:text="@string/next" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

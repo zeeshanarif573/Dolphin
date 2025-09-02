@@ -7,12 +7,17 @@ import com.retail.dolphinpos.presentation.R
 import com.retail.dolphinpos.presentation.databinding.FragmentSelectRegisterBinding
 import com.retail.dolphinpos.presentation.features.base.BaseFragment
 import com.retail.dolphinpos.presentation.features.base.setOnSafeClickListener
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SelectRegisterFragment :
     BaseFragment<FragmentSelectRegisterBinding>(FragmentSelectRegisterBinding::inflate) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        clickEvents()
+    }
 
+    private fun clickEvents() {
         binding.continueActionButton.setOnSafeClickListener {
             findNavController().navigate(R.id.action_selectRegisterFragment_to_pinCodeFragment)
         }

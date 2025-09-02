@@ -1,14 +1,300 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/light_grey"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".features.ui.auth.cash_denomination.CashDenominationFragment">
+    android:layout_height="match_parent">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_12sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:background="@drawable/background_cash_counter_tray"
+        android:padding="@dimen/_4sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.15">
 
-</FrameLayout>
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/cash_label"
+            style="@style/TextAppearance.Heading.Medium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/cash"
+            android:textColor="@color/colorTextLightMode"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/cash_value"
+            style="@style/TextAppearance.Label.Large"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/_0_00"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorTextLightMode"
+            android:textSize="@dimen/text_heading_large"
+            app:fontFamily="@font/general_sans_semi_bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cash_label" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_tray"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/space_20"
+        android:layout_marginBottom="@dimen/_12sdp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/counter_layout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:spanCount="3"
+        tools:listitem="@layout/item_tray" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/counter_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/recycler_view_tray"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_percent="0.4">
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/counting_cash_in_drawer_label"
+                    style="@style/TextAppearance.Heading.Large"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="@string/counting_cash_in_drawer"
+                    android:textColor="@color/colorHint"
+                    app:fontFamily="@font/general_sans_semi_bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/keypad_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHeight_percent="0.6"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/counting_cash_in_drawer_label">
+
+                    <com.google.android.material.textview.MaterialTextView
+                        android:id="@+id/counter_label"
+                        style="@style/TextAppearance.Label.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_24"
+                        android:text="@string/counter_label"
+                        android:textColor="@color/primary"
+                        app:layout_constraintStart_toStartOf="@+id/startBatchAmount"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <EditText
+                        android:id="@+id/startBatchAmount"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:background="@drawable/edittext_box"
+                        android:fontFamily="@font/general_sans_semi_bold"
+                        android:textSize="@dimen/text_heading_medium"
+                        android:autofillHints=""
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:enabled="false"
+                        android:inputType="none"
+                        android:textAlignment="textStart"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/counter_label"
+                        app:layout_constraintWidth_percent="0.6"/>
+
+                    <GridLayout
+                        android:id="@+id/keypadLayout"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/space_12"
+                        android:layout_marginBottom="@dimen/space_12"
+                        android:alignmentMode="alignMargins"
+                        android:columnCount="3"
+                        android:rowCount="4"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/startBatchAmount"
+                        app:layout_constraintStart_toStartOf="@+id/startBatchAmount"
+                        app:layout_constraintTop_toBottomOf="@+id/startBatchAmount">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/keypad_action_button_seven"
+                            style="@style/KeypadButton"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:text="@string/_7" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/keypad_action_button_eight"
+                            style="@style/KeypadButton"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:text="@string/_8" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/keypad_action_button_nine"
+                            style="@style/KeypadButton"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:text="@string/_9" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/keypad_action_button_four"
+                            style="@style/KeypadButton"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:text="@string/_4" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/keypad_action_button_five"
+                            style="@style/KeypadButton"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:text="@string/_5" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/keypad_action_button_six"
+                            style="@style/KeypadButton"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:text="@string/_6" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/keypad_action_button_one"
+                            style="@style/KeypadButton"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:text="@string/_1" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/keypad_action_button_two"
+                            style="@style/KeypadButton"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:text="@string/_2" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/keypad_action_button_three"
+                            style="@style/KeypadButton"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:text="@string/_3" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/keypad_action_button_clear"
+                            style="@style/ActionButton"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:text="@string/clear"
+                            android:textSize="@dimen/text_heading_small" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/keypad_action_button_zero"
+                            style="@style/KeypadButton"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:text="@string/_0" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/keypad_action_button_double_zero"
+                            style="@style/KeypadButton"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_rowWeight="1"
+                            android:layout_columnWeight="1"
+                            android:text="@string/_00" />
+
+                    </GridLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/save_and_start_batch_button"
+                    style="@style/Widget.Button.Success"
+                    android:layout_width="0dp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/start_batch"
+                    app:layout_constraintEnd_toEndOf="@+id/keypad_layout"
+                    app:layout_constraintStart_toStartOf="@+id/keypad_layout"
+                    app:layout_constraintTop_toBottomOf="@+id/keypad_layout"
+                    app:layout_constraintWidth_percent="0.5" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/open_cash_drawer_button"
+                    style="@style/Widget.Button.Neutral"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="@string/open_cash_drawer"
+                    android:textColor="@color/white"
+                    android:layout_marginVertical="@dimen/_15sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/save_and_start_batch_button"
+                    app:layout_constraintStart_toStartOf="@+id/save_and_start_batch_button"
+                    app:layout_constraintWidth_percent="0.5" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

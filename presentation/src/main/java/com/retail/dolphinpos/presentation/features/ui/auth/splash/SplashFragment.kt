@@ -20,6 +20,7 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        clickEvents()
 
         // Collect current time
         viewLifecycleOwner.lifecycleScope.launch {
@@ -38,7 +39,9 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
                 }
             }
         }
+    }
 
+    private fun clickEvents() {
         binding.letsStartActionButton.setOnSafeClickListener {
             findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
         }
