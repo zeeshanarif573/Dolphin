@@ -69,7 +69,7 @@ android {
         create("dev") {
             applicationId = "com.dolphin.retail.pos"
             dimension = "default"
-            resValue("string", "app_name", "Retail POS (Dev)")
+            resValue("string", "app_name", "Dolphin POS (Dev)")
             buildConfigField("String", "BUILD_TYPE", "\"DEV\"")
             buildConfigField("String", "BASE_URL", "\"https://lingerie-pos.gotmsolutions.com/api/\"")
             versionNameSuffix = "-dev"
@@ -78,7 +78,7 @@ android {
         create("uat") {
             applicationId = "com.dolphin.retail.pos"
             dimension = "default"
-            resValue("string", "app_name", "Retail POS (Uat)")
+            resValue("string", "app_name", "Dolphin POS (Uat)")
             buildConfigField("String", "BUILD_TYPE", "\"UAT\"")
             buildConfigField("String", "BASE_URL", "\"https://uat-lingerie.gotmsolutions.com/api/\"")
             versionNameSuffix = "-uat"
@@ -87,7 +87,7 @@ android {
         create("prod") {
             applicationId = "com.dolphin.retail.pos"
             dimension = "default"
-            resValue("string", "app_name", "Retail POS")
+            resValue("string", "app_name", "Dolphin POS")
             buildConfigField("String", "BUILD_TYPE", "\"PROD\"")
             buildConfigField("String", "BASE_URL", "\"https://uat-lingerie.gotmsolutions.com/api/\"")
             versionNameSuffix = "-prod"

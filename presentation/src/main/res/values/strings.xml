@@ -101,6 +101,7 @@
 
     <string name="settings">Settings</string>
     <string name="cancel">Cancel</string>
+    <string name="dismiss">Dismiss</string>
     <string name="age_verification">Age Verification</string>
     <string name="age_verification_description">This sale includes restricted items that require age confirmation before proceeding. Please scan a valid Driver License.</string>
     <string name="manual_verification">Manual Verification</string>
@@ -110,5 +111,6 @@
     <string name="save">Save</string>
     <string name="enter_reason">Enter Reason</string>
     <string name="example_cash_change">Example : Cash Change</string>
+    <string name="no_internet">Please check your connection and try again.</string>
 
 </resources>

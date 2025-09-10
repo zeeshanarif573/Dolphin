@@ -13,8 +13,8 @@
             android:id="@+id/action_splashFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
         <action
-            android:id="@+id/action_splashFragment_to_selectRegisterFragment"
-            app:destination="@id/selectRegisterFragment" />
+            android:id="@+id/action_splashFragment_to_pinCodeFragment"
+            app:destination="@id/pinCodeFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
