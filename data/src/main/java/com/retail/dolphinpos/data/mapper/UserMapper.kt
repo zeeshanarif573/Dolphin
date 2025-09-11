@@ -1,7 +1,6 @@
 package com.retail.dolphinpos.data.mapper
 
 import com.retail.dolphinpos.data.entities.UserEntity
-import com.retail.dolphinpos.domain.models.login.response.Store
 import com.retail.dolphinpos.domain.models.login.response.User
 
 object UserMapper {

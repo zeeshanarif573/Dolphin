@@ -5,7 +5,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.retail.dolphinpos.data.entities.UserEntity
-import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface UserDao {
