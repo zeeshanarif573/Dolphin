@@ -12,7 +12,7 @@ import com.retail.dolphinpos.data.entities.UserEntity
 @Database(entities = [UserEntity::class], version = 1, exportSchema = false)
 abstract class DolphinDatabase : RoomDatabase() {
 
-    abstract fun userLoginDetailsDao(): UserDao
+    abstract fun userDao(): UserDao
 
     companion object {
         @Volatile

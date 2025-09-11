@@ -26,7 +26,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     private fun clickEvents() {
         binding.loginActionButton.setOnSafeClickListener {
-            viewModel.login("irtiza_123", "1234")
+            viewModel.login("schaumburg", "schaumburg")
         }
     }
 

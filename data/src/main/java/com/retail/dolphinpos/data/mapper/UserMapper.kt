@@ -1,27 +1,34 @@
 package com.retail.dolphinpos.data.mapper
 
 import com.retail.dolphinpos.data.entities.UserEntity
-import com.retail.dolphinpos.domain.models.login.response.LoginData
+import com.retail.dolphinpos.domain.models.login.response.Store
+import com.retail.dolphinpos.domain.models.login.response.User
 
 object UserMapper {
-
-    fun loginDetailsToUserEntity(
-        loginDetails: LoginData,
-        password: String
-    ): UserEntity {
+    fun userToUserEntity(user: User, password: String): UserEntity {
         return UserEntity(
-            id = loginDetails.user.id,
-            accessToken = loginDetails.accessToken,
-            refreshToken = loginDetails.refreshToken,
-            expiresIn = loginDetails.expiresIn,
-            roleTitle = loginDetails.user.roleTitle,
-            status = loginDetails.user.status,
-            username = loginDetails.user.username,
-            name = loginDetails.user.name,
+            id = user.id,
+            roleTitle = user.roleTitle,
+            status = user.status,
+            username = user.username,
+            name = user.name,
             password = password,
-            storeId = loginDetails.user.storeId,
-            managerId = loginDetails.user.managerId
+            storeId = user.storeId,
+            managerId = user.managerId
         )
     }
 
+    fun userEntityToUser(userEntity: UserEntity): User {
+        return User(
+            id = userEntity.id,
+            roleTitle = userEntity.roleTitle,
+            status = userEntity.status,
+            username = userEntity.username,
+            name = userEntity.name,
+            password = userEntity.password,
+            storeId = userEntity.storeId,
+            managerId = userEntity.managerId,
+            store = null
+        )
+    }
 }
