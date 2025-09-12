@@ -1,16 +1,17 @@
-package com.retail.dolphinpos.data.entities
+package com.retail.dolphinpos.data.entities.auth.login_response
 
 import androidx.room.Entity
+import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
 @Entity(
     tableName = "auth_table",
     foreignKeys = [
-        androidx.room.ForeignKey(
+        ForeignKey(
             entity = UserEntity::class,
             parentColumns = ["id"],
             childColumns = ["userId"],
-            onDelete = androidx.room.ForeignKey.CASCADE
+            onDelete = ForeignKey.CASCADE
         )
     ]
 )

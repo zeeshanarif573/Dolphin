@@ -3,11 +3,10 @@ package com.retail.dolphinpos.data.repositories
 import com.retail.dolphinpos.data.dao.UserDao
 import com.retail.dolphinpos.data.mapper.UserMapper
 import com.retail.dolphinpos.data.service.ApiService
-import com.retail.dolphinpos.domain.models.login.request.LoginRequest
-import com.retail.dolphinpos.domain.models.login.response.LoginData
-import com.retail.dolphinpos.domain.models.login.response.LoginResponse
-import com.retail.dolphinpos.domain.models.login.response.Store
-import com.retail.dolphinpos.domain.models.login.response.User
+import com.retail.dolphinpos.domain.models.auth.login.request.LoginRequest
+import com.retail.dolphinpos.domain.models.auth.login.response.LoginData
+import com.retail.dolphinpos.domain.models.auth.login.response.LoginResponse
+import com.retail.dolphinpos.domain.models.auth.login.response.User
 import com.retail.dolphinpos.domain.repositories.LoginRepository
 
 class LoginRepositoryImpl(
@@ -91,8 +90,13 @@ class LoginRepositoryImpl(
     override suspend fun getCompleteUserData(userId: Int): LoginData? {
         val userEntity = userDao.getUserEntity(userId)
         val authEntity = userDao.getAuthEntity(userId)
-        val storeEntity = userDao.getStoreEntity(userId)
-        val storeLogoUrlEntity = userDao.getStoreLogoUrlEntity(userId)
+        
+        // Get storeId from userEntity first
+        val storeId = userEntity?.storeId
+        if (storeId == null) return null
+        
+        val storeEntity = userDao.getStoreEntity(storeId)
+        val storeLogoUrlEntity = userDao.getStoreLogoUrlEntity(storeId)
 
         return if (userEntity != null && authEntity != null && storeEntity != null && storeLogoUrlEntity != null) {
             UserMapper.userCompleteDataToLoginData(
@@ -105,6 +109,5 @@ class LoginRepositoryImpl(
             null
         }
     }
-
 
 }

@@ -1,7 +1,7 @@
 package com.retail.dolphinpos.data.service
 
-import com.retail.dolphinpos.domain.models.login.request.LoginRequest
-import com.retail.dolphinpos.domain.models.login.response.LoginResponse
+import com.retail.dolphinpos.domain.models.auth.login.request.LoginRequest
+import com.retail.dolphinpos.domain.models.auth.login.response.LoginResponse
 import retrofit2.http.Body
 import retrofit2.http.POST
 

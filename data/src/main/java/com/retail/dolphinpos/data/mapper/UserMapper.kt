@@ -1,13 +1,13 @@
 package com.retail.dolphinpos.data.mapper
 
-import com.retail.dolphinpos.data.entities.AuthEntity
-import com.retail.dolphinpos.data.entities.StoreEntity
-import com.retail.dolphinpos.data.entities.StoreLogoUrlEntity
-import com.retail.dolphinpos.data.entities.UserEntity
-import com.retail.dolphinpos.domain.models.login.response.LoginData
-import com.retail.dolphinpos.domain.models.login.response.StoreLogoUrl
-import com.retail.dolphinpos.domain.models.login.response.Store
-import com.retail.dolphinpos.domain.models.login.response.User
+import com.retail.dolphinpos.data.entities.auth.login_response.AuthEntity
+import com.retail.dolphinpos.data.entities.auth.login_response.StoreEntity
+import com.retail.dolphinpos.data.entities.auth.login_response.StoreLogoUrlEntity
+import com.retail.dolphinpos.data.entities.auth.login_response.UserEntity
+import com.retail.dolphinpos.domain.models.auth.login.response.LoginData
+import com.retail.dolphinpos.domain.models.auth.login.response.StoreLogoUrl
+import com.retail.dolphinpos.domain.models.auth.login.response.Store
+import com.retail.dolphinpos.domain.models.auth.login.response.User
 
 object UserMapper {
 

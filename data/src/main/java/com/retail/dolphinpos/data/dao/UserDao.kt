@@ -5,10 +5,10 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Transaction
-import com.retail.dolphinpos.data.entities.AuthEntity
-import com.retail.dolphinpos.data.entities.StoreEntity
-import com.retail.dolphinpos.data.entities.StoreLogoUrlEntity
-import com.retail.dolphinpos.data.entities.UserEntity
+import com.retail.dolphinpos.data.entities.auth.login_response.AuthEntity
+import com.retail.dolphinpos.data.entities.auth.login_response.StoreEntity
+import com.retail.dolphinpos.data.entities.auth.login_response.StoreLogoUrlEntity
+import com.retail.dolphinpos.data.entities.auth.login_response.UserEntity
 
 @Dao
 interface UserDao {

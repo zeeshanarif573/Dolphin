@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.retail.dolphinpos.common.Headers
-import com.retail.dolphinpos.domain.models.login.request.LoginRequest
+import com.retail.dolphinpos.domain.models.auth.login.request.LoginRequest
 import com.retail.dolphinpos.domain.repositories.LoginRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -31,15 +31,11 @@ class LoginViewModel @Inject constructor(
                 _loginUiEvent.value = LoginUiEvent.HideLoading
 
                 response.loginData?.let { loginData ->
-                    Headers.accessToken = loginData.accessToken
-                    Headers.refreshToken = loginData.refreshToken
-                    repository.insertLoginDataIntoLocalDB(loginData, password)
-                    val user = repository.getCompleteUserData(16)
-                    user.let {
-                        Log.d("User", "User loaded: $it")
-                    }
+//                    Headers.accessToken = loginData.accessToken
+//                    Headers.refreshToken = loginData.refreshToken
+//                    repository.insertLoginDataIntoLocalDB(loginData, password)
 
-//                    _loginUiEvent.value = LoginUiEvent.NavigateToRegister
+                    _loginUiEvent.value = LoginUiEvent.NavigateToRegister
 
                 } ?: run {
                     _loginUiEvent.value =

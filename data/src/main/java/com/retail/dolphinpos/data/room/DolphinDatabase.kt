@@ -6,10 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.retail.dolphinpos.data.dao.UserDao
-import com.retail.dolphinpos.data.entities.AuthEntity
-import com.retail.dolphinpos.data.entities.StoreEntity
-import com.retail.dolphinpos.data.entities.StoreLogoUrlEntity
-import com.retail.dolphinpos.data.entities.UserEntity
+import com.retail.dolphinpos.data.entities.auth.login_response.AuthEntity
+import com.retail.dolphinpos.data.entities.auth.login_response.StoreEntity
+import com.retail.dolphinpos.data.entities.auth.login_response.StoreLogoUrlEntity
+import com.retail.dolphinpos.data.entities.auth.login_response.UserEntity
 
 @Database(
     entities = [UserEntity::class, AuthEntity::class, StoreEntity::class, StoreLogoUrlEntity::class],
@@ -29,7 +29,7 @@ abstract class DolphinDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     DolphinDatabase::class.java,
-                    "dolphin_retail_pos_db"
+                    "dolphin_retail_pos"
                 ).addCallback(object : Callback() {
                     override fun onOpen(db: SupportSQLiteDatabase) {
                         super.onOpen(db)

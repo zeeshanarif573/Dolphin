@@ -1,10 +1,10 @@
-package com.retail.dolphinpos.domain.models.login.response
+package com.retail.dolphinpos.domain.models.auth.login.response
 
 data class Store(
-    val advertisementImg: String,
+    val advertisementImg: String?,
     val allowCustomDiscount: Boolean,
     val id: Int,
-    val isAdvertisement: Boolean,
+    val isAdvertisement: Boolean?,
     val location: String,
     val logoUrl: StoreLogoUrl?,
     val multiCashier: Boolean,

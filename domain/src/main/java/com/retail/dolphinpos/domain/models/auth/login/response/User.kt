@@ -1,4 +1,4 @@
-package com.retail.dolphinpos.domain.models.login.response
+package com.retail.dolphinpos.domain.models.auth.login.response
 
 data class User(
     val id: Int = 0,

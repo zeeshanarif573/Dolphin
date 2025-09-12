@@ -1,12 +1,9 @@
 package com.retail.dolphinpos.domain.repositories
 
-import androidx.room.Transaction
-import com.retail.dolphinpos.domain.models.login.request.LoginRequest
-import com.retail.dolphinpos.domain.models.login.response.LoginData
-import com.retail.dolphinpos.domain.models.login.response.LoginResponse
-import com.retail.dolphinpos.domain.models.login.response.Store
-import com.retail.dolphinpos.domain.models.login.response.User
-
+import com.retail.dolphinpos.domain.models.auth.login.request.LoginRequest
+import com.retail.dolphinpos.domain.models.auth.login.response.LoginData
+import com.retail.dolphinpos.domain.models.auth.login.response.LoginResponse
+import com.retail.dolphinpos.domain.models.auth.login.response.User
 
 interface LoginRepository {
     suspend fun login(request: LoginRequest): LoginResponse
