@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.retail.dolphinpos.common.Headers
 import com.retail.dolphinpos.domain.models.login.request.LoginRequest
-import com.retail.dolphinpos.domain.models.login.response.User
 import com.retail.dolphinpos.domain.repositories.LoginRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -34,7 +33,11 @@ class LoginViewModel @Inject constructor(
                 response.loginData?.let { loginData ->
                     Headers.accessToken = loginData.accessToken
                     Headers.refreshToken = loginData.refreshToken
-                    insertDataIntoLocalDB(loginData.user, password)
+                    repository.insertLoginDataIntoLocalDB(loginData, password)
+                    val user = repository.getCompleteUserData(16)
+                    user.let {
+                        Log.d("User", "User loaded: $it")
+                    }
 
 //                    _loginUiEvent.value = LoginUiEvent.NavigateToRegister
 
@@ -46,22 +49,6 @@ class LoginViewModel @Inject constructor(
                 _loginUiEvent.value = LoginUiEvent.HideLoading
                 _loginUiEvent.value = LoginUiEvent.ShowError(e.message ?: "Something went wrong")
             }
-        }
-    }
-
-    suspend fun insertDataIntoLocalDB(user: User, password: String) {
-        val inserted = repository.insertUserDataIntoLocalDB(user, password)
-        if (inserted) {
-            Log.e("Local DB", "Inserted")
-            getUserFromLocalDB()
-        } else
-            Log.e("Local DB", "Not Inserted")
-    }
-
-    fun getUserFromLocalDB() {
-        viewModelScope.launch {
-            val user = repository.getUser()
-            Log.e("User", user.toString())
         }
     }
 }

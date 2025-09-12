@@ -7,7 +7,7 @@ data class User(
     val password: String? = "",
     val roleTitle: String? = "",
     val status: String? = "",
-    val store: Store?,
+    val store: Store,
     val storeId: Int? = 0,
     val username: String? = ""
 )

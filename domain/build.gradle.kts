@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.hilt)
 }
 
@@ -42,6 +43,9 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.hilt)
     implementation(libs.refrofit.gson)
+    implementation(libs.room.runtime)
+    implementation(libs.room.pagging)
+    ksp(libs.room.compiler)
 
     kapt(libs.hilt.compiler)
     testImplementation(libs.junit)

@@ -6,9 +6,16 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.retail.dolphinpos.data.dao.UserDao
+import com.retail.dolphinpos.data.entities.AuthEntity
+import com.retail.dolphinpos.data.entities.StoreEntity
+import com.retail.dolphinpos.data.entities.StoreLogoUrlEntity
 import com.retail.dolphinpos.data.entities.UserEntity
 
-@Database(entities = [UserEntity::class], version = 1, exportSchema = false)
+@Database(
+    entities = [UserEntity::class, AuthEntity::class, StoreEntity::class, StoreLogoUrlEntity::class],
+    version = 1,
+    exportSchema = false
+)
 abstract class DolphinDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao

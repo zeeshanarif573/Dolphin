@@ -3,15 +3,26 @@ package com.retail.dolphinpos.data.entities
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "store")
+@Entity(
+    tableName = "store",
+    foreignKeys = [
+        androidx.room.ForeignKey(
+            entity = UserEntity::class,
+            parentColumns = ["id"],
+            childColumns = ["userId"],
+            onDelete = androidx.room.ForeignKey.CASCADE
+        )
+    ]
+)
 data class StoreEntity(
     @PrimaryKey
     val id: Int,
+    val userId: Int,
     val name: String,
     val location: String,
     val multiCashier: Boolean,
     val policy: String,
-    val advertisementImg: String?,
-    val isAdvertisement: Boolean?,
+    val advertisementImg: String,
+    val isAdvertisement: Boolean,
     val allowCustomDiscount: Boolean
 )

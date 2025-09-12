@@ -21,7 +21,7 @@ object RoomDatabaseModule {
         @ApplicationContext context: Context
     ): DolphinDatabase {
         return Room.databaseBuilder(
-            context, DolphinDatabase::class.java, "dolphin_db"
+            context, DolphinDatabase::class.java, "dolphin_retail_pos_db"
         ).build()
     }
 
