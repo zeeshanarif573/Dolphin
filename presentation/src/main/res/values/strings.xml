@@ -112,5 +112,6 @@
     <string name="enter_reason">Enter Reason</string>
     <string name="example_cash_change">Example : Cash Change</string>
     <string name="no_internet">Please check your connection and try again.</string>
+    <string name="registers_in_use">All registers are in use. Please add more register from Portal.</string>
 
 </resources>

@@ -26,7 +26,7 @@ object RetrofitModule {
     fun provideAuthInterceptor(): Interceptor {
         return Interceptor { chain ->
             val newRequest = chain.request().newBuilder()
-                .addHeader("Authorization", Headers.accessToken)
+                .addHeader("Authorization", "Bearer ${Headers.accessToken}")
                 .header("Content-Type", "application/json")
                 .build()
             chain.proceed(newRequest)

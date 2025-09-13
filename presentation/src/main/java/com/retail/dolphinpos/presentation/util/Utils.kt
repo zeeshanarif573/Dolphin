@@ -45,13 +45,20 @@ object Utils {
     // ✅ Error Dialog
     fun showErrorDialog(
         context: Context,
+        title: String = "Alert",
         message: String,
     ) {
         AlertDialog.Builder(context)
-            .setTitle("Error")
+            .setTitle(title)
             .setMessage(message)
             .setNegativeButton("OK") { dialog, _ -> dialog.dismiss() }
             .show()
+    }
+
+    // ✅ Handle Button Disability
+    fun Button.setEnabledWithAlpha(isEnabled: Boolean, alphaWhenDisabled: Float = 0.4f) {
+        this.isEnabled = isEnabled
+        this.alpha = if (isEnabled) 1f else alphaWhenDisabled
     }
 
 }

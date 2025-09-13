@@ -1,12 +1,50 @@
 package com.retail.dolphinpos.presentation.features.ui.auth.select_register
 
+import android.content.Context
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.retail.dolphinpos.domain.models.auth.select_register.GetStoreRegistersData
+import com.retail.dolphinpos.domain.repositories.StoreRegistersRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SelectRegisterViewModel @Inject constructor(
+    @ApplicationContext val context: Context,
+    private val storeRegistersRepository: StoreRegistersRepository
 ) : ViewModel() {
+
+    private val _selectRegisterUiEvent = MutableLiveData<SelectRegisterUiEvent>()
+    val selectRegisterUiEvent: LiveData<SelectRegisterUiEvent> = _selectRegisterUiEvent
+
+    private val _storeRegisters = MutableLiveData<List<GetStoreRegistersData>>()
+    val storeRegisters: LiveData<List<GetStoreRegistersData>> = _storeRegisters
+
     init {
+        getStoreRegisters()
+    }
+
+    fun getStoreRegisters() {
+        viewModelScope.launch {
+            _selectRegisterUiEvent.value = SelectRegisterUiEvent.ShowLoading
+            try {
+                val response = storeRegistersRepository.getStoreRegisters(7)
+                _selectRegisterUiEvent.value = SelectRegisterUiEvent.HideLoading
+
+                if (response.getStoreRegistersDataList.isNotEmpty())
+                    _storeRegisters.value = response.getStoreRegistersDataList
+                else
+                    _storeRegisters.value = emptyList()
+
+            } catch (e: Exception) {
+                _selectRegisterUiEvent.value = SelectRegisterUiEvent.HideLoading
+                _selectRegisterUiEvent.value =
+                    SelectRegisterUiEvent.ShowError(e.message ?: "Something went wrong")
+            }
+        }
     }
 }

@@ -31,8 +31,8 @@ class LoginViewModel @Inject constructor(
                 _loginUiEvent.value = LoginUiEvent.HideLoading
 
                 response.loginData?.let { loginData ->
-//                    Headers.accessToken = loginData.accessToken
-//                    Headers.refreshToken = loginData.refreshToken
+                    Headers.accessToken = loginData.accessToken
+                    Headers.refreshToken = loginData.refreshToken
 //                    repository.insertLoginDataIntoLocalDB(loginData, password)
 
                     _loginUiEvent.value = LoginUiEvent.NavigateToRegister
