@@ -2,9 +2,9 @@ package com.retail.dolphinpos.common
 
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.core.content.edit
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
-import androidx.core.content.edit
 
 class PreferenceManager @Inject constructor(
     @ApplicationContext context: Context
@@ -18,5 +18,21 @@ class PreferenceManager @Inject constructor(
 
     fun getRegister(defaultValue: Boolean = false): Boolean {
         return prefs.getBoolean(Constants.SET_REGISTER, defaultValue)
+    }
+
+    fun setLogin(value: Boolean) {
+        prefs.edit { putBoolean(Constants.IS_LOGIN, value) }
+    }
+
+    fun isLogin(defaultValue: Boolean = false): Boolean {
+        return prefs.getBoolean(Constants.IS_LOGIN, defaultValue)
+    }
+
+    fun setAccessToken(value: String) {
+        prefs.edit { putString(Constants.ACCESS_TOKEN, value) }
+    }
+
+    fun getAccessToken(defaultValue: String = ""): String {
+        return prefs.getString(Constants.ACCESS_TOKEN, defaultValue) ?: defaultValue
     }
 }

@@ -1,11 +1,11 @@
-package com.retail.dolphinpos.data.entities.auth.login_response
+package com.retail.dolphinpos.data.entities
 
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "auth_table",
+    tableName = "store",
     foreignKeys = [
         ForeignKey(
             entity = UserEntity::class,
@@ -15,10 +15,15 @@ import androidx.room.PrimaryKey
         )
     ]
 )
-data class AuthEntity(
-    @PrimaryKey(autoGenerate = false)
+data class StoreEntity(
+    @PrimaryKey
+    val id: Int,
     val userId: Int,
-    val accessToken: String,
-    val refreshToken: String,
-    val expiresIn: String
+    val name: String,
+    val location: String,
+    val multiCashier: Boolean,
+    val policy: String,
+    val advertisementImg: String?,
+    val isAdvertisement: Boolean?,
+    val allowCustomDiscount: Boolean
 )

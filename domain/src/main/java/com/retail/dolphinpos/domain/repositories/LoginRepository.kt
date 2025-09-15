@@ -1,9 +1,9 @@
 package com.retail.dolphinpos.domain.repositories
 
-import com.retail.dolphinpos.domain.models.auth.login.request.LoginRequest
-import com.retail.dolphinpos.domain.models.auth.login.response.LoginData
-import com.retail.dolphinpos.domain.models.auth.login.response.LoginResponse
-import com.retail.dolphinpos.domain.models.auth.login.response.User
+import com.retail.dolphinpos.domain.model.auth.login.request.LoginRequest
+import com.retail.dolphinpos.domain.model.auth.login.response.LoginData
+import com.retail.dolphinpos.domain.model.auth.login.response.LoginResponse
+import com.retail.dolphinpos.domain.model.auth.login.response.User
 
 interface LoginRepository {
     suspend fun login(request: LoginRequest): LoginResponse

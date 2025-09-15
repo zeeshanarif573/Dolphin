@@ -11,10 +11,15 @@
         android:label="SplashFragment">
         <action
             android:id="@+id/action_splashFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/splashFragment" />
         <action
             android:id="@+id/action_splashFragment_to_pinCodeFragment"
-            app:destination="@id/pinCodeFragment" />
+            app:destination="@id/pinCodeFragment"
+            app:popUpTo="@id/splashFragment" />
+        <action
+            android:id="@+id/action_splashFragment_to_selectRegisterFragment"
+            app:destination="@id/selectRegisterFragment" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
@@ -32,7 +37,12 @@
         tools:layout="@layout/fragment_select_register">
         <action
             android:id="@+id/action_selectRegisterFragment_to_pinCodeFragment"
-            app:destination="@id/pinCodeFragment" />
+            app:destination="@id/pinCodeFragment"
+            app:popUpTo="@id/splashFragment"/>
+        <action
+            android:id="@+id/action_selectRegisterFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/splashFragment"/>
     </fragment>
     <fragment
         android:id="@+id/pinCodeFragment"

@@ -1,4 +1,4 @@
-package com.retail.dolphinpos.domain.models.auth.login.request
+package com.retail.dolphinpos.domain.model.auth.login.request
 
 data class LoginRequest(
     val username: String,

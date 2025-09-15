@@ -5,4 +5,5 @@ sealed class SelectRegisterUiEvent {
     object HideLoading : SelectRegisterUiEvent()
     data class ShowError(val message: String) : SelectRegisterUiEvent()
     object NavigateToPinScreen : SelectRegisterUiEvent()
+    object NavigateToLoginScreen : SelectRegisterUiEvent()
 }

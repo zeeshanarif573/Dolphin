@@ -48,10 +48,22 @@ class SplashFragment : BaseFragment<FragmentSplashBinding>(FragmentSplashBinding
 
     private fun clickEvents() {
         binding.letsStartActionButton.setOnSafeClickListener {
-            if (preferenceManager.getRegister())
-                findNavController().navigate(R.id.action_splashFragment_to_pinCodeFragment)
-            else
-                findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+            val isLoggedIn = preferenceManager.isLogin()
+            val hasRegister = preferenceManager.getRegister()
+
+            when {
+                !isLoggedIn -> {
+                    findNavController().navigate(R.id.action_splashFragment_to_loginFragment)
+                }
+
+                !hasRegister -> {
+                    findNavController().navigate(R.id.action_splashFragment_to_selectRegisterFragment)
+                }
+
+                else -> {
+                    findNavController().navigate(R.id.action_splashFragment_to_pinCodeFragment)
+                }
+            }
         }
     }
 }

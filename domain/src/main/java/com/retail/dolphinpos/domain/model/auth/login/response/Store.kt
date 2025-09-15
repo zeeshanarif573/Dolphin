@@ -1,4 +1,4 @@
-package com.retail.dolphinpos.domain.models.auth.login.response
+package com.retail.dolphinpos.domain.model.auth.login.response
 
 data class Store(
     val advertisementImg: String?,

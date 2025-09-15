@@ -1,6 +1,6 @@
 package com.retail.dolphinpos.ui.theme.di
 
-import com.retail.dolphinpos.common.Headers
+import com.retail.dolphinpos.common.PreferenceManager
 import com.retail.dolphinpos.data.service.ApiService
 import com.retail.dolphinpos.ui.theme.util.NetworkMonitor
 import com.retail.dolphinpos.ui.theme.util.NoConnectivityException
@@ -23,10 +23,12 @@ object RetrofitModule {
 
     @Provides
     @Named("AuthInterceptor")
-    fun provideAuthInterceptor(): Interceptor {
+    fun provideAuthInterceptor(
+        preferenceManager: PreferenceManager
+    ): Interceptor {
         return Interceptor { chain ->
             val newRequest = chain.request().newBuilder()
-                .addHeader("Authorization", "Bearer ${Headers.accessToken}")
+                .addHeader("Authorization", "Bearer ${preferenceManager.getAccessToken()}")
                 .header("Content-Type", "application/json")
                 .build()
             chain.proceed(newRequest)

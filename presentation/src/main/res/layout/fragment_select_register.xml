@@ -160,8 +160,20 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/dataLayout"
                         android:layout_marginHorizontal="@dimen/_30sdp"
-                        android:layout_marginVertical="@dimen/_20sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
                         android:text="@string/button_continue" />
+
+                    <TextView
+                        android:id="@+id/logout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/continue_action_button"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:fontFamily="@font/general_sans_medium"
+                        android:text="@string/logout"
+                        android:textColor="@color/primary"
+                        android:textSize="@dimen/_7sdp" />
 
                 </RelativeLayout>
 

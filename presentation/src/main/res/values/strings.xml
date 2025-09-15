@@ -109,6 +109,7 @@
     <string name="cash_drawer">Cash Drawer</string>
     <string name="please_enter_reason_for_opening_cash_drawer">Please enter reason for opening cash drawer</string>
     <string name="save">Save</string>
+    <string name="logout">Logout</string>
     <string name="enter_reason">Enter Reason</string>
     <string name="example_cash_change">Example : Cash Change</string>
     <string name="no_internet">Please check your connection and try again.</string>
