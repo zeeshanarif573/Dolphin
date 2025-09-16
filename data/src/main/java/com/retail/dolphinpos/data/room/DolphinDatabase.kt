@@ -6,19 +6,22 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.retail.dolphinpos.data.dao.UserDao
-import com.retail.dolphinpos.data.entities.AuthEntity
-import com.retail.dolphinpos.data.entities.StoreEntity
-import com.retail.dolphinpos.data.entities.StoreLogoUrlEntity
-import com.retail.dolphinpos.data.entities.UserEntity
+import com.retail.dolphinpos.data.entities.login_response.AuthEntity
+import com.retail.dolphinpos.data.entities.login_response.StoreEntity
+import com.retail.dolphinpos.data.entities.login_response.StoreLogoUrlEntity
+import com.retail.dolphinpos.data.entities.login_response.UserEntity
+import com.retail.dolphinpos.data.entities.store_register_response.StoreRegistersEntity
 
 @Database(
-    entities = [UserEntity::class, AuthEntity::class, StoreEntity::class, StoreLogoUrlEntity::class],
+    entities = [UserEntity::class, AuthEntity::class,
+        StoreEntity::class, StoreLogoUrlEntity::class, StoreRegistersEntity::class],
     version = 1,
     exportSchema = false
 )
 abstract class DolphinDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
+    abstract fun storeRegistersDao(): StoreRegistersDao
 
     companion object {
         @Volatile
@@ -27,9 +30,7 @@ abstract class DolphinDatabase : RoomDatabase() {
         fun getDatabase(context: Context): DolphinDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    DolphinDatabase::class.java,
-                    "dolphin_retail_pos"
+                    context.applicationContext, DolphinDatabase::class.java, "dolphin_retail_pos"
                 ).addCallback(object : Callback() {
                     override fun onOpen(db: SupportSQLiteDatabase) {
                         super.onOpen(db)

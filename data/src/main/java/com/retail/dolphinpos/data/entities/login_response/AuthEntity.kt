@@ -1,4 +1,4 @@
-package com.retail.dolphinpos.data.entities
+package com.retail.dolphinpos.data.entities.login_response
 
 import androidx.room.Entity
 import androidx.room.ForeignKey

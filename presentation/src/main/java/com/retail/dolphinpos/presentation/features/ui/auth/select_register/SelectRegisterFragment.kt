@@ -53,6 +53,10 @@ class SelectRegisterFragment :
             })
     }
 
+    private fun welcomeUserText() {
+        binding.textViewTitle.text = "Welcome ${viewModel.getUsername()}"
+    }
+
     private fun storeRegistersObserver() {
         viewModel.storeRegisters.observe(viewLifecycleOwner) { list ->
             if (!list.isNullOrEmpty()) {

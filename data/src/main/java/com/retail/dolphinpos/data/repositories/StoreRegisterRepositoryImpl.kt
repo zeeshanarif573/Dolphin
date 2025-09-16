@@ -10,6 +10,7 @@ import com.retail.dolphinpos.domain.repositories.StoreRegistersRepository
 class StoreRegisterRepositoryImpl(
     private val api: ApiService
 ) : StoreRegistersRepository {
+
     override suspend fun getStoreRegisters(storeId: Int): GetStoreRegistersResponse {
         return try {
             api.getStoreRegisters(storeId)

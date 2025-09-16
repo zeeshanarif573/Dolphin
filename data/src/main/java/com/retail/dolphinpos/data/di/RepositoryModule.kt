@@ -24,8 +24,11 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideStoreRegisterRepository(api: ApiService): StoreRegistersRepository {
-        return StoreRegisterRepositoryImpl(api)
+    fun provideStoreRegisterRepository(
+        api: ApiService,
+        storeRegistersDao: StoreRegistersDao
+    ): StoreRegistersRepository {
+        return StoreRegisterRepositoryImpl(api, storeRegistersDao)
     }
 
 }

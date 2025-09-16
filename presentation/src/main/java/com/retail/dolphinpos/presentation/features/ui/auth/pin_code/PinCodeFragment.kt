@@ -1,8 +1,10 @@
 package com.retail.dolphinpos.presentation.features.ui.auth.pin_code
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -25,6 +27,7 @@ class PinCodeFragment : BaseFragment<FragmentPinCodeBinding>(FragmentPinCodeBind
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        hideKeyboard()
         initializeKeypadButtons()
         clickEvents()
 
@@ -83,5 +86,10 @@ class PinCodeFragment : BaseFragment<FragmentPinCodeBinding>(FragmentPinCodeBind
         binding.keypadActionButtonNext.setOnSafeClickListener {
             findNavController().navigate(R.id.action_pinCodeFragment_to_cashDenominationFragment)
         }
+    }
+
+    private fun hideKeyboard(){
+        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
 }

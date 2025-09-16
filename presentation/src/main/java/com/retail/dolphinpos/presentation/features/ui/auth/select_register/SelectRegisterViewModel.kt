@@ -38,9 +38,10 @@ class SelectRegisterViewModel @Inject constructor(
                 val response = storeRegistersRepository.getStoreRegisters(7)
                 _selectRegisterUiEvent.value = SelectRegisterUiEvent.HideLoading
 
-                if (response.getStoreRegistersDataList.isNotEmpty())
+                if (response.getStoreRegistersDataList.isNotEmpty()) {
                     _storeRegisters.value = response.getStoreRegistersDataList
-                else
+
+                } else
                     _storeRegisters.value = emptyList()
 
             } catch (e: Exception) {
@@ -91,4 +92,7 @@ class SelectRegisterViewModel @Inject constructor(
         }
     }
 
+    fun getUsername(): String {
+        return preferenceManager.getUsername()
+    }
 }

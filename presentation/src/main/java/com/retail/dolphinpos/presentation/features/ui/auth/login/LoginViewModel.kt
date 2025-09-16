@@ -5,9 +5,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.retail.dolphinpos.common.Headers
 import com.retail.dolphinpos.common.PreferenceManager
 import com.retail.dolphinpos.domain.model.auth.login.request.LoginRequest
+import com.retail.dolphinpos.domain.model.auth.login.response.LoginData
 import com.retail.dolphinpos.domain.repositories.LoginRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -32,12 +32,8 @@ class LoginViewModel @Inject constructor(
                 _loginUiEvent.value = LoginUiEvent.HideLoading
 
                 response.loginData?.let { loginData ->
-                    Headers.accessToken = loginData.accessToken
-                    Headers.refreshToken = loginData.refreshToken
-                    preferenceManager.setAccessToken(loginData.accessToken)
-                    preferenceManager.setLogin(true)
-//                    repository.insertLoginDataIntoLocalDB(loginData, password)
-
+                    setPreferences(loginData)
+                    repository.insertLoginDataIntoLocalDB(loginData, password)
                     _loginUiEvent.value = LoginUiEvent.NavigateToRegister
 
                 } ?: run {
@@ -49,5 +45,13 @@ class LoginViewModel @Inject constructor(
                 _loginUiEvent.value = LoginUiEvent.ShowError(e.message ?: "Something went wrong")
             }
         }
+    }
+
+    private fun setPreferences(loginData: LoginData) {
+        preferenceManager.setUserID(loginData.user.id)
+        loginData.user.username?.let { preferenceManager.setUsername(it) }
+        preferenceManager.setAccessToken(loginData.accessToken)
+        preferenceManager.setRefreshToken(loginData.refreshToken)
+        preferenceManager.setLogin(true)
     }
 }

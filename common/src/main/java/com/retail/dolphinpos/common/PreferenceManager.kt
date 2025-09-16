@@ -35,4 +35,29 @@ class PreferenceManager @Inject constructor(
     fun getAccessToken(defaultValue: String = ""): String {
         return prefs.getString(Constants.ACCESS_TOKEN, defaultValue) ?: defaultValue
     }
+
+    fun setRefreshToken(value: String) {
+        prefs.edit { putString(Constants.REFRESH_TOKEN, value) }
+    }
+
+    fun getRefreshToken(defaultValue: String = ""): String {
+        return prefs.getString(Constants.REFRESH_TOKEN, defaultValue) ?: defaultValue
+    }
+
+    fun setUserID(value: Int) {
+        prefs.edit { putInt(Constants.USER_ID, value) }
+    }
+
+    fun getUserID(defaultValue: Int = 0): Int {
+        return prefs.getInt(Constants.USER_ID, defaultValue)
+    }
+
+    fun setUsername(value: String) {
+        prefs.edit { putString(Constants.USERNAME, value) }
+    }
+
+    fun getUsername(defaultValue: String = ""): String {
+        return prefs.getString(Constants.USERNAME, defaultValue) ?: defaultValue
+    }
+
 }

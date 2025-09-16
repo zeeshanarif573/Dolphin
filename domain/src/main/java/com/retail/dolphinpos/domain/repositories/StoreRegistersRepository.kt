@@ -7,6 +7,7 @@ import com.retail.dolphinpos.domain.model.auth.select_registers.request.UpdateSt
 
 interface StoreRegistersRepository {
     suspend fun getStoreRegisters(storeId: Int): GetStoreRegistersResponse
+
     suspend fun updateStoreRegister(updateStoreRegisterRequest: UpdateStoreRegisterRequest): UpdateStoreRegisterResponse
 
     suspend fun logout(): LogoutResponse
