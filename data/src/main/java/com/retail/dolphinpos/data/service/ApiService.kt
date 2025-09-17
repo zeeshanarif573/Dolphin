@@ -18,6 +18,7 @@ interface ApiService {
 
     @POST("auth/login")
     suspend fun login(@Body loginRequest: LoginRequest): LoginResponse
+
     @POST("auth/logout")
     suspend fun logout(): LogoutResponse
 
@@ -29,4 +30,5 @@ interface ApiService {
 
     @POST("auth/verify")
     suspend fun verifyPin(@Body verifyPinRequest: VerifyPinRequest): VerifyPinResponse
+
 }

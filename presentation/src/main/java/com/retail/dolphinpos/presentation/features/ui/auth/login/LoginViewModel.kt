@@ -32,8 +32,7 @@ class LoginViewModel @Inject constructor(
                 _loginUiEvent.value = LoginUiEvent.HideLoading
 
                 response.loginData?.let { loginData ->
-                    setPreferences(loginData)
-                    repository.insertLoginDataIntoLocalDB(loginData, password)
+                    setPreferences(loginData, password)
                     _loginUiEvent.value = LoginUiEvent.NavigateToRegister
 
                 } ?: run {
@@ -47,9 +46,12 @@ class LoginViewModel @Inject constructor(
         }
     }
 
-    private fun setPreferences(loginData: LoginData) {
+    private fun setPreferences(loginData: LoginData, password: String) {
         preferenceManager.setUserID(loginData.user.id)
+        preferenceManager.setStoreID(loginData.user.storeId)
+        preferenceManager.setManagerID(loginData.user.managerId)
         loginData.user.username?.let { preferenceManager.setUsername(it) }
+        preferenceManager.setPassword(password)
         preferenceManager.setAccessToken(loginData.accessToken)
         preferenceManager.setRefreshToken(loginData.refreshToken)
         preferenceManager.setLogin(true)

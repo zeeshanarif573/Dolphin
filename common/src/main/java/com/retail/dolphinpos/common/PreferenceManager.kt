@@ -20,6 +20,14 @@ class PreferenceManager @Inject constructor(
         return prefs.getBoolean(Constants.SET_REGISTER, defaultValue)
     }
 
+    fun setStoreRegisterID(value: Int) {
+        prefs.edit { putInt(Constants.STORE_REGISTER_ID, value) }
+    }
+
+    fun getStoreRegisterID(defaultValue: Int = 0): Int {
+        return prefs.getInt(Constants.STORE_REGISTER_ID, defaultValue)
+    }
+
     fun setLogin(value: Boolean) {
         prefs.edit { putBoolean(Constants.IS_LOGIN, value) }
     }
@@ -52,12 +60,38 @@ class PreferenceManager @Inject constructor(
         return prefs.getInt(Constants.USER_ID, defaultValue)
     }
 
+    fun setStoreID(value: Int) {
+        prefs.edit { putInt(Constants.STORE_ID, value) }
+    }
+
+    fun getStoreID(defaultValue: Int = 0): Int {
+        return prefs.getInt(Constants.STORE_ID, defaultValue)
+    }
+
+    fun setManagerID(value: Int?) {
+        prefs.edit {
+            putInt(Constants.MANAGER_ID, value ?: -1)
+        }
+    }
+
+    fun getManagerID(defaultValue: Int = 0): Int {
+        return prefs.getInt(Constants.MANAGER_ID, defaultValue)
+    }
+
     fun setUsername(value: String) {
         prefs.edit { putString(Constants.USERNAME, value) }
     }
 
     fun getUsername(defaultValue: String = ""): String {
         return prefs.getString(Constants.USERNAME, defaultValue) ?: defaultValue
+    }
+
+    fun setPassword(value: String) {
+        prefs.edit { putString(Constants.PASSWORD, value) }
+    }
+
+    fun getPassword(defaultValue: String = ""): String {
+        return prefs.getString(Constants.PASSWORD, defaultValue) ?: defaultValue
     }
 
 }

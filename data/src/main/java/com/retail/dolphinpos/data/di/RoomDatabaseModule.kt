@@ -29,9 +29,4 @@ object RoomDatabaseModule {
     fun provideUserDao(database: DolphinDatabase): UserDao {
         return database.userDao()
     }
-
-    @Provides
-    fun provideStoreRegisterDao(database: DolphinDatabase): StoreRegistersDao {
-        return database.storeRegistersDao()
-    }
 }

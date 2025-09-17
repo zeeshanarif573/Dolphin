@@ -60,6 +60,7 @@ class SelectRegisterViewModel @Inject constructor(
                     UpdateStoreRegisterRequest(storeID, storeRegisterID)
                 )
                 response.message.let {
+                    preferenceManager.setStoreRegisterID(storeRegisterID)
                     preferenceManager.setRegister(true)
                     _selectRegisterUiEvent.value = SelectRegisterUiEvent.NavigateToPinScreen
                 }

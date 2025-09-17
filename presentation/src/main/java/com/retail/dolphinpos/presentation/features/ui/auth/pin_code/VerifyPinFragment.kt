@@ -12,15 +12,17 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.retail.dolphinpos.presentation.R
-import com.retail.dolphinpos.presentation.databinding.FragmentPinCodeBinding
+import com.retail.dolphinpos.presentation.databinding.FragmentVerifyPinBinding
 import com.retail.dolphinpos.presentation.features.base.BaseFragment
 import com.retail.dolphinpos.presentation.features.base.setOnSafeClickListener
+import com.retail.dolphinpos.presentation.util.Utils
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class PinCodeFragment : BaseFragment<FragmentPinCodeBinding>(FragmentPinCodeBinding::inflate) {
-    private val viewModel by viewModels<PinCodeViewModel>()
+class VerifyPinFragment :
+    BaseFragment<FragmentVerifyPinBinding>(FragmentVerifyPinBinding::inflate) {
+    private val viewModel by viewModels<VerifyPinViewModel>()
     private lateinit var keyPadButtons: List<Pair<Int, String>>
     private var pinBuilder = ""
     private val pinLimit = 4
@@ -30,6 +32,7 @@ class PinCodeFragment : BaseFragment<FragmentPinCodeBinding>(FragmentPinCodeBind
         hideKeyboard()
         initializeKeypadButtons()
         clickEvents()
+        eventObserver()
 
         // Collect current time
         viewLifecycleOwner.lifecycleScope.launch {
@@ -84,12 +87,32 @@ class PinCodeFragment : BaseFragment<FragmentPinCodeBinding>(FragmentPinCodeBind
         }
 
         binding.keypadActionButtonNext.setOnSafeClickListener {
-            findNavController().navigate(R.id.action_pinCodeFragment_to_cashDenominationFragment)
+            viewModel.verifyPin(
+                pin = binding.pinText.text.toString()
+            )
         }
     }
 
-    private fun hideKeyboard(){
-        val imm = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    private fun eventObserver() {
+        viewModel.verifyPinUiEvent.observe(viewLifecycleOwner) { event ->
+            when (event) {
+                is VerifyPinUiEvent.ShowLoading -> Utils.showLoader(requireContext())
+                is VerifyPinUiEvent.HideLoading -> Utils.hideLoader()
+                is VerifyPinUiEvent.ShowError -> Utils.showErrorDialog(
+                    requireContext(),
+                    message = event.message
+                )
+
+                is VerifyPinUiEvent.NavigateToCashDenomination -> {
+                    findNavController().navigate(R.id.action_pinCodeFragment_to_cashDenominationFragment)
+                }
+            }
+        }
+    }
+
+    private fun hideKeyboard() {
+        val imm =
+            requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
 }

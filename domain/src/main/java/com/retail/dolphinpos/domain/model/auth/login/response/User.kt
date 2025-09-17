@@ -8,6 +8,6 @@ data class User(
     val roleTitle: String? = "",
     val status: String? = "",
     val store: Store,
-    val storeId: Int? = 0,
+    val storeId: Int = 0,
     val username: String? = ""
 )

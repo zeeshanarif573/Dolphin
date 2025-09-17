@@ -46,9 +46,9 @@
     </fragment>
     <fragment
         android:id="@+id/pinCodeFragment"
-        android:name="com.retail.dolphinpos.presentation.features.ui.auth.pin_code.PinCodeFragment"
+        android:name="com.retail.dolphinpos.presentation.features.ui.auth.pin_code.VerifyPinFragment"
         android:label="fragment_pin_code"
-        tools:layout="@layout/fragment_pin_code">
+        tools:layout="@layout/fragment_verify_pin">
         <action
             android:id="@+id/action_pinCodeFragment_to_cashDenominationFragment"
             app:destination="@id/cashDenominationFragment" />

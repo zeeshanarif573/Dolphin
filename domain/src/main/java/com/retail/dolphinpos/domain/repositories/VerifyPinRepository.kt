@@ -20,13 +20,13 @@ interface VerifyPinRepository {
         insertStoreLogoUrlDataIntoLocalDB(verifyPinUser.store.logoUrl, userId, storeID)
     }
 
-    suspend fun insertUserDataIntoLocalDB(verifyPinUser: VerifyPinUser, password: String): Boolean
-    suspend fun insertStoreDataIntoLocalDB(verifyPinStore: VerifyPinStore, userId: Int): Boolean
+    suspend fun insertUserDataIntoLocalDB(verifyPinUser: VerifyPinUser, password: String)
+    suspend fun insertStoreDataIntoLocalDB(verifyPinStore: VerifyPinStore, userId: Int)
     suspend fun insertStoreLogoUrlDataIntoLocalDB(
         verifyPinLogoUrl: VerifyPinLogoUrl,
         userId: Int,
         storeID: Int
-    ): Boolean
+    )
 
     suspend fun getCompleteUserData(userId: Int): VerifyPinUser?
 
