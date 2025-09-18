@@ -12,9 +12,13 @@
     <string name="login">Login</string>
     <string name="you_re_almost_ready_to_start_your_shift_please_select_your_register_to_continue">You\'re almost ready to start your shift. Please select your register to continue.</string>
     <string name="button_continue">Continue</string>
+    <string name="select_store">Select Store</string>
     <string name="select_register">Select Register</string>
+    <string name="select_location">Select Location</string>
     <string name="welcome_username">Welcome %1$s!</string>
+    <string name="select_stores_hint">--Select Stores--</string>
     <string name="select_register_hint">--Select Register--</string>
+    <string name="select_locations_hint">--Select Locations--</string>
     <string name="enter_pin_code">Enter PIN Code</string>
     <string name="clear">Clear</string>
     <string name="next">Next</string>

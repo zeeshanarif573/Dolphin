@@ -21,8 +21,8 @@ interface UserDao {
     suspend fun insertStoreLogoUrlDetails(storeLogoUrlEntity: StoreLogoUrlEntity): Long
 
 
-    @Query("SELECT * FROM user WHERE id = :userId")
-    suspend fun getUserEntity(userId: Int): UserEntity?
+    @Query("SELECT * FROM user WHERE pin = :pin")
+    suspend fun getUserEntity(pin: String): UserEntity?
 
     @Query("SELECT * FROM store WHERE id = :storeId")
     suspend fun getStoreEntity(storeId: Int): StoreEntity?

@@ -1,6 +1,6 @@
-package com.retail.dolphinpos.domain.model.auth.pin.response
+package com.retail.dolphinpos.domain.model.auth.users
 
-data class VerifyPinUser(
+data class User(
     val alreadyClockedIn: Boolean?,
     val createdAt: String?,
     val deletedAt: String?,
@@ -15,7 +15,7 @@ data class VerifyPinUser(
     val roleId: Int?,
     val roleTitle: String?,
     val status: String?,
-    val store: VerifyPinStore,
+    val store: Store?,
     val storeId: Int,
     val updatedAt: String?,
     val username: String?

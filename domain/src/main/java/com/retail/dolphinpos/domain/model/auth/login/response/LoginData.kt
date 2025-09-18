@@ -4,5 +4,5 @@ data class LoginData(
     val accessToken: String,
     val expiresIn: String,
     val refreshToken: String,
-    val user: User
+    val user: LoginUser
 )

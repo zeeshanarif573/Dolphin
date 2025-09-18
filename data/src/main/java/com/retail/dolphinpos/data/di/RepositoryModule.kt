@@ -27,17 +27,17 @@ object RepositoryModule {
     @Provides
     @Singleton
     fun provideStoreRegisterRepository(
-        api: ApiService,
+        api: ApiService, userDao: UserDao
     ): StoreRegistersRepository {
-        return StoreRegisterRepositoryImpl(api)
+        return StoreRegisterRepositoryImpl(api, userDao)
     }
 
     @Provides
     @Singleton
     fun provideVerifyPinRepository(
-        api: ApiService, verifyPinDao: UserDao
+        userDao: UserDao
     ): VerifyPinRepository {
-        return VerifyPinRepositoryImpl(api, verifyPinDao)
+        return VerifyPinRepositoryImpl(userDao)
     }
 
 }

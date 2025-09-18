@@ -3,8 +3,6 @@ package com.retail.dolphinpos.data.service
 import com.retail.dolphinpos.domain.model.auth.login.request.LoginRequest
 import com.retail.dolphinpos.domain.model.auth.login.response.LoginResponse
 import com.retail.dolphinpos.domain.model.auth.logout.LogoutResponse
-import com.retail.dolphinpos.domain.model.auth.pin.request.VerifyPinRequest
-import com.retail.dolphinpos.domain.model.auth.pin.response.VerifyPinResponse
 import com.retail.dolphinpos.domain.model.auth.select_registers.reponse.GetStoreRegistersResponse
 import com.retail.dolphinpos.domain.model.auth.select_registers.reponse.UpdateStoreRegisterResponse
 import com.retail.dolphinpos.domain.model.auth.select_registers.request.UpdateStoreRegisterRequest
@@ -27,8 +25,5 @@ interface ApiService {
 
     @PUT("store-registers")
     suspend fun updateStoreRegister(@Body request: UpdateStoreRegisterRequest): UpdateStoreRegisterResponse
-
-    @POST("auth/verify")
-    suspend fun verifyPin(@Body verifyPinRequest: VerifyPinRequest): VerifyPinResponse
 
 }

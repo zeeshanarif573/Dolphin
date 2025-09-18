@@ -3,76 +3,76 @@ package com.retail.dolphinpos.data.mapper
 import com.retail.dolphinpos.data.entities.StoreEntity
 import com.retail.dolphinpos.data.entities.StoreLogoUrlEntity
 import com.retail.dolphinpos.data.entities.UserEntity
-import com.retail.dolphinpos.domain.model.auth.pin.response.VerifyPinLogoUrl
-import com.retail.dolphinpos.domain.model.auth.pin.response.VerifyPinStore
-import com.retail.dolphinpos.domain.model.auth.pin.response.VerifyPinUser
+import com.retail.dolphinpos.domain.model.auth.users.LogoUrl
+import com.retail.dolphinpos.domain.model.auth.users.Store
+import com.retail.dolphinpos.domain.model.auth.users.User
 
 object UserMapper {
 
-    fun toUserEntity(verifyPinUser: VerifyPinUser, password: String): UserEntity {
+    fun toUserEntity(user: User, password: String): UserEntity {
         return UserEntity(
-            id = verifyPinUser.id,
-            name = verifyPinUser.name,
-            email = verifyPinUser.email,
+            id = user.id,
+            name = user.name,
+            email = user.email,
             password = password,
-            username = verifyPinUser.username,
-            pin = verifyPinUser.pin,
-            managerId = verifyPinUser.managerId,
-            permissions = verifyPinUser.permissions,
-            phoneNo = verifyPinUser.phoneNo,
-            roleId = verifyPinUser.roleId,
-            roleTitle = verifyPinUser.roleTitle,
-            status = verifyPinUser.status,
-            storeId = verifyPinUser.storeId,
-            alreadyClockedIn = verifyPinUser.alreadyClockedIn,
-            updatedAt = verifyPinUser.updatedAt,
-            createdAt = verifyPinUser.createdAt,
-            deletedAt = verifyPinUser.deletedAt,
+            username = user.username,
+            pin = user.pin,
+            managerId = user.managerId,
+            permissions = user.permissions,
+            phoneNo = user.phoneNo,
+            roleId = user.roleId,
+            roleTitle = user.roleTitle,
+            status = user.status,
+            storeId = user.storeId,
+            alreadyClockedIn = user.alreadyClockedIn,
+            updatedAt = user.updatedAt,
+            createdAt = user.createdAt,
+            deletedAt = user.deletedAt,
         )
     }
 
-    fun toStoreEntity(userID: Int, verifyPinStore: VerifyPinStore): StoreEntity {
+    fun toStoreEntity(userID: Int, store: Store): StoreEntity {
         return StoreEntity(
-            id = verifyPinStore.id,
+            id = store.id,
             userId = userID,
-            name = verifyPinStore.name,
-            location = verifyPinStore.location,
-            multiCashier = verifyPinStore.multiCashier,
-            policy = verifyPinStore.policy,
-            isAdvertisement = verifyPinStore.isAdvertisement,
-            allowCustomDiscount = verifyPinStore.allowCustomDiscount,
-            createdAt = verifyPinStore.createdAt,
-            deletedAt = verifyPinStore.deletedAt,
-            dualPricePercentage = verifyPinStore.dualPricePercentage,
-            endTime = verifyPinStore.endTime,
-            isMultipleDiscountsAllowed = verifyPinStore.isMultipleDIscountsAllowed,
-            startTime = verifyPinStore.startTime,
-            status = verifyPinStore.status,
-            taxValue = verifyPinStore.taxValue,
-            timezone = verifyPinStore.timezone,
-            updatedAt = verifyPinStore.updatedAt,
-            wpId = verifyPinStore.wpId,
-            zipCode = verifyPinStore.zipCode
+            name = store.name,
+            location = store.location,
+            multiCashier = store.multiCashier,
+            policy = store.policy,
+            isAdvertisement = store.isAdvertisement,
+            allowCustomDiscount = store.allowCustomDiscount,
+            createdAt = store.createdAt,
+            deletedAt = store.deletedAt,
+            dualPricePercentage = store.dualPricePercentage,
+            endTime = store.endTime,
+            isMultipleDiscountsAllowed = store.isMultipleDIscountsAllowed,
+            startTime = store.startTime,
+            status = store.status,
+            taxValue = store.taxValue,
+            timezone = store.timezone,
+            updatedAt = store.updatedAt,
+            wpId = store.wpId,
+            zipCode = store.zipCode
         )
     }
 
     fun toStoreLogoUrlEntity(
-        userID: Int, storeID: Int, verifyPinLogoUrl: VerifyPinLogoUrl
+        userID: Int, storeID: Int, logoUrl: LogoUrl
     ): StoreLogoUrlEntity {
         return StoreLogoUrlEntity(
             userId = userID,
             storeID = storeID,
-            fileURL = verifyPinLogoUrl.fileURL,
-            originalName = verifyPinLogoUrl.originalName
+            fileURL = logoUrl.fileURL,
+            originalName = logoUrl.originalName
         )
     }
 
-    fun toVerifyPinUser(
+    fun toUsers(
         userEntity: UserEntity,
         storeEntity: StoreEntity,
         storeLogoUrlEntity: StoreLogoUrlEntity
-    ): VerifyPinUser {
-        return VerifyPinUser(
+    ): User {
+        return User(
             id = userEntity.id,
             alreadyClockedIn = userEntity.alreadyClockedIn,
             createdAt = userEntity.createdAt,
@@ -90,7 +90,7 @@ object UserMapper {
             storeId = userEntity.storeId,
             updatedAt = userEntity.updatedAt,
             username = userEntity.username,
-            store = VerifyPinStore(
+            store = Store(
                 id = storeEntity.id,
                 name = storeEntity.name,
                 location = storeEntity.location,
@@ -110,7 +110,7 @@ object UserMapper {
                 updatedAt = storeEntity.updatedAt,
                 wpId = storeEntity.wpId,
                 zipCode = storeEntity.zipCode,
-                logoUrl = VerifyPinLogoUrl(
+                logoUrl = LogoUrl(
                     fileURL = storeLogoUrlEntity.fileURL,
                     originalName = storeLogoUrlEntity.originalName
                 )

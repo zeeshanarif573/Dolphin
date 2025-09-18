@@ -1,11 +1,11 @@
 package com.retail.dolphinpos.presentation.features.ui.auth.pin_code
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.retail.dolphinpos.common.PreferenceManager
-import com.retail.dolphinpos.domain.model.auth.pin.request.VerifyPinRequest
 import com.retail.dolphinpos.domain.repositories.VerifyPinRepository
 import com.retail.dolphinpos.domain.usecases.GetCurrentTimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -44,27 +44,12 @@ class VerifyPinViewModel @Inject constructor(
         viewModelScope.launch {
             _verifyPinUiEvent.value = VerifyPinUiEvent.ShowLoading
             try {
-                val response = repository.verifyPin(
-                    VerifyPinRequest(
-                        pin = pin,
-                        rootManagerId = if (preferenceManager.getManagerID() == -1) {
-                            preferenceManager.getUserID()
-                        } else {
-                            preferenceManager.getManagerID()
-                        },
-                        storeId = preferenceManager.getStoreID(),
-                        storeRegisterId = preferenceManager.getStoreRegisterID()
-                    )
-                )
-
-                response.user.let {
-                    preferenceManager.setUserID(response.user.id)
-                    repository.insertDataAfterVerifyPinIntoLocalDB(
-                        response.user,
-                        preferenceManager.getPassword(),
-                        preferenceManager.getUserID(),
-                        preferenceManager.getStoreID()
-                    )
+                val user = repository.getCompleteUserData(pin)
+                if (user == null) _verifyPinUiEvent.value =
+                    VerifyPinUiEvent.ShowError("No record exists against this PIN")
+                else {
+                    Log.e("User", user.toString())
+                    _verifyPinUiEvent.value = VerifyPinUiEvent.NavigateToCashDenomination
                 }
 
                 _verifyPinUiEvent.value = VerifyPinUiEvent.HideLoading

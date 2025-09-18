@@ -1,6 +1,6 @@
-package com.retail.dolphinpos.domain.model.auth.pin.response
+package com.retail.dolphinpos.domain.model.auth.users
 
-data class VerifyPinStore(
+data class Store(
     val allowCustomDiscount: Boolean?,
     val createdAt: String?,
     val deletedAt: String?,
@@ -10,7 +10,7 @@ data class VerifyPinStore(
     val isAdvertisement: Boolean?,
     val isMultipleDIscountsAllowed: Boolean?,
     val location: String?,
-    val logoUrl: VerifyPinLogoUrl,
+    val logoUrl: LogoUrl,
     val multiCashier: Boolean?,
     val name: String?,
     val policy: String?,
