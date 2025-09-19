@@ -4,5 +4,7 @@ data class LoginData(
     val accessToken: String,
     val expiresIn: String,
     val refreshToken: String,
-    val user: LoginUser
+    val user: User,
+    val allStoreUsers: List<AllStoreUsers>,
+    val storeInfo: Store
 )

@@ -1,13 +1,13 @@
 package com.retail.dolphinpos.domain.model.auth.login.response
 
-data class LoginUser(
+data class User(
     val id: Int = 0,
-    val managerId: Int? = 0,
     val name: String? = "",
-    val password: String? = "",
     val roleTitle: String? = "",
     val status: String? = "",
-    val store: LoginStoreData,
+    val username: String? = "",
     val storeId: Int = 0,
-    val username: String? = ""
+    val locationId: Int = 0,
+    val rootManagerId: Int? = 0,
+    val pin: String? = ""
 )

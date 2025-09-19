@@ -27,7 +27,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
 
     private fun clickEvents() {
         binding.loginActionButton.setOnSafeClickListener {
-            viewModel.login("schaumburg", "schaumburg")
+            viewModel.login("imran_123", "1234")
         }
 
         binding.etUsername.doOnTextChanged { _, _, _, _ -> updateButtonState() }

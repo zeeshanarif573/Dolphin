@@ -39,7 +39,7 @@ class SelectRegisterFragment :
 
         binding.refreshLayout.setOnRefreshListener {
             binding.refreshLayout.isRefreshing = false
-            viewModel.getStoreRegisters()
+//            viewModel.getStoreRegisters()
         }
 
         binding.logout.setOnSafeClickListener {
@@ -58,43 +58,43 @@ class SelectRegisterFragment :
     }
 
     private fun storeRegistersObserver() {
-        viewModel.storeRegisters.observe(viewLifecycleOwner) { list ->
-            if (!list.isNullOrEmpty()) {
-                binding.tvSelectRegisterHint.visibility = GONE
-                val adapter = ArrayAdapter(
-                    requireContext(),
-                    android.R.layout.simple_spinner_item,
-                    list.map { it.name }
-                )
-                adapter.setDropDownViewResource(R.layout.item_dropdown)
-                binding.spRegisters.adapter = adapter
-
-                // set item selected listener
-                binding.spRegisters.onItemSelectedListener =
-                    object : AdapterView.OnItemSelectedListener {
-                        override fun onItemSelected(
-                            parent: AdapterView<*>,
-                            view: View?,
-                            position: Int,
-                            id: Long
-                        ) {
-                            val selectedRegister: GetStoreRegistersData = list[position]
-                            storeID = selectedRegister.storeId
-                            storeRegisterID = selectedRegister.id
-                        }
-
-                        override fun onNothingSelected(parent: AdapterView<*>) {
-                            // handle if needed
-                        }
-                    }
-
-            } else {
-                binding.tvSelectRegisterHint.visibility = VISIBLE
-                Utils.showErrorDialog(
-                    requireContext(), message = getString(R.string.registers_in_use)
-                )
-            }
-        }
+//        viewModel.storeRegisters.observe(viewLifecycleOwner) { list ->
+//            if (!list.isNullOrEmpty()) {
+//                binding.tvSelectRegisterHint.visibility = GONE
+//                val adapter = ArrayAdapter(
+//                    requireContext(),
+//                    android.R.layout.simple_spinner_item,
+//                    list.map { it.name }
+//                )
+//                adapter.setDropDownViewResource(R.layout.item_dropdown)
+//                binding.spRegisters.adapter = adapter
+//
+//                // set item selected listener
+//                binding.spRegisters.onItemSelectedListener =
+//                    object : AdapterView.OnItemSelectedListener {
+//                        override fun onItemSelected(
+//                            parent: AdapterView<*>,
+//                            view: View?,
+//                            position: Int,
+//                            id: Long
+//                        ) {
+//                            val selectedRegister: GetStoreRegistersData = list[position]
+//                            storeID = selectedRegister.storeId
+//                            storeRegisterID = selectedRegister.id
+//                        }
+//
+//                        override fun onNothingSelected(parent: AdapterView<*>) {
+//                            // handle if needed
+//                        }
+//                    }
+//
+//            } else {
+//                binding.tvSelectRegisterHint.visibility = VISIBLE
+//                Utils.showErrorDialog(
+//                    requireContext(), message = getString(R.string.registers_in_use)
+//                )
+//            }
+//        }
     }
 
     private fun eventObserver() {
@@ -107,6 +107,8 @@ class SelectRegisterFragment :
                 is SelectRegisterUiEvent.ShowError -> Utils.showErrorDialog(
                     requireContext(), message = event.message
                 )
+
+                is SelectRegisterUiEvent.PopulateLocationsList -> {}
             }
         }
     }

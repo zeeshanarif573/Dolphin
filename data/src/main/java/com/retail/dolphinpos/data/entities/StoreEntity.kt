@@ -7,23 +7,11 @@ import androidx.room.PrimaryKey
 
 data class StoreEntity(
     @PrimaryKey val id: Int,
-    val userId: Int,
+    val userID: Int,
     val name: String?,
-    val location: String?,
+    val address: String?,
     val multiCashier: Boolean?,
     val policy: String?,
-    val isAdvertisement: Boolean?,
-    val allowCustomDiscount: Boolean?,
-    val createdAt: String?,
-    val deletedAt: String?,
-    val dualPricePercentage: String?,
-    val endTime: String?,
-    val isMultipleDiscountsAllowed: Boolean?,
-    val startTime: String?,
-    val status: String?,
-    val taxValue: Int?,
-    val timezone: String?,
-    val updatedAt: String?,
-    val wpId: Int?,
-    val zipCode: String?
+    val advertisementImg: String?,
+    val isAdvertisement: Int?
 )

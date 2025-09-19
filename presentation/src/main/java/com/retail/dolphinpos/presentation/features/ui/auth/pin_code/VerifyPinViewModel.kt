@@ -44,13 +44,13 @@ class VerifyPinViewModel @Inject constructor(
         viewModelScope.launch {
             _verifyPinUiEvent.value = VerifyPinUiEvent.ShowLoading
             try {
-                val user = repository.getCompleteUserData(pin)
-                if (user == null) _verifyPinUiEvent.value =
-                    VerifyPinUiEvent.ShowError("No record exists against this PIN")
-                else {
-                    Log.e("User", user.toString())
-                    _verifyPinUiEvent.value = VerifyPinUiEvent.NavigateToCashDenomination
-                }
+//                val user = repository.getCompleteUserData(pin)
+//                if (user == null) _verifyPinUiEvent.value =
+//                    VerifyPinUiEvent.ShowError("No record exists against this PIN")
+//                else {
+//                    Log.e("User", user.toString())
+//                    _verifyPinUiEvent.value = VerifyPinUiEvent.NavigateToCashDenomination
+//                }
 
                 _verifyPinUiEvent.value = VerifyPinUiEvent.HideLoading
 

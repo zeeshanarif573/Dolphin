@@ -20,8 +20,8 @@ object RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideLoginRepository(api: ApiService): LoginRepository {
-        return LoginRepositoryImpl(api)
+    fun provideLoginRepository(api: ApiService, userDao: UserDao): LoginRepository {
+        return LoginRepositoryImpl(api, userDao)
     }
 
     @Provides
