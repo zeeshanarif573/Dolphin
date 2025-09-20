@@ -6,17 +6,17 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.retail.dolphinpos.data.dao.UserDao
-import com.retail.dolphinpos.data.entities.LocationEntity
-import com.retail.dolphinpos.data.entities.RegisterEntity
-import com.retail.dolphinpos.data.entities.StoreEntity
-import com.retail.dolphinpos.data.entities.StoreLogoUrlEntity
-import com.retail.dolphinpos.data.entities.UserEntity
-import com.retail.dolphinpos.domain.model.auth.login.response.Locations
-import com.retail.dolphinpos.domain.model.auth.login.response.Registers
+import com.retail.dolphinpos.data.entities.user.ActiveUserDetailsEntity
+import com.retail.dolphinpos.data.entities.user.LocationEntity
+import com.retail.dolphinpos.data.entities.user.RegisterEntity
+import com.retail.dolphinpos.data.entities.user.StoreEntity
+import com.retail.dolphinpos.data.entities.user.StoreLogoUrlEntity
+import com.retail.dolphinpos.data.entities.user.UserEntity
 
 @Database(
     entities = [UserEntity::class, StoreEntity::class,
-        StoreLogoUrlEntity::class, LocationEntity::class, RegisterEntity::class],
+        StoreLogoUrlEntity::class, LocationEntity::class,
+        RegisterEntity::class, ActiveUserDetailsEntity::class],
     version = 1,
     exportSchema = false
 )

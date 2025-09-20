@@ -91,13 +91,4 @@ class LoginRepositoryImpl(
         }
     }
 
-    override suspend fun getUser(pin: String): AllStoreUsers? {
-        val userEntity = userDao.getUserByPin(pin)
-        return if (userEntity != null) {
-            UserMapper.toUsers(userEntity)
-        } else {
-            null
-        }
-    }
-
 }

@@ -23,7 +23,7 @@ interface ApiService {
     @GET("store-registers")
     suspend fun getStoreRegisters(@Query("storeId") storeId: Int): GetStoreRegistersResponse
 
-    @PUT("store-registers")
+    @POST("offline-registers/occupy")
     suspend fun updateStoreRegister(@Body request: UpdateStoreRegisterRequest): UpdateStoreRegisterResponse
 
 }

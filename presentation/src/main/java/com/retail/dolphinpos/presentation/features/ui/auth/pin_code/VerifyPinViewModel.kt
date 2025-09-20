@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.retail.dolphinpos.common.PreferenceManager
+import com.retail.dolphinpos.domain.model.active_user.ActiveUserDetails
 import com.retail.dolphinpos.domain.repositories.VerifyPinRepository
 import com.retail.dolphinpos.domain.usecases.GetCurrentTimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -44,13 +45,54 @@ class VerifyPinViewModel @Inject constructor(
         viewModelScope.launch {
             _verifyPinUiEvent.value = VerifyPinUiEvent.ShowLoading
             try {
-//                val user = repository.getCompleteUserData(pin)
-//                if (user == null) _verifyPinUiEvent.value =
-//                    VerifyPinUiEvent.ShowError("No record exists against this PIN")
-//                else {
-//                    Log.e("User", user.toString())
+                val response = repository.getUser(pin)
+                if (response == null) _verifyPinUiEvent.value =
+                    VerifyPinUiEvent.ShowError("No record exists against this PIN")
+                else {
+                    val user = response
+                    val location = repository.getLocationByLocationID(preferenceManager.getOccupiedLocationID())
+                    val register = repository.getRegisterByRegisterID(preferenceManager.getOccupiedRegisterID())
+
+//                    val activeUserDetails = ActiveUserDetails(
+//                        id = user.id,
+//                        name = user.name,
+//                        email = user.email,
+//                        username = user.username,
+//                        password = user.password,
+//                        pin = user.pin,
+//                        userStatus = user.userStatus,
+//                        phoneNo = user.phoneNo,
+//                        storeId = user.storeId,
+//                        locationId = location.id,
+//                        roleId = user.roleId,
+//                        roleTitle = user.roleTitle,
+//                        storeName = user.storeName,
+//                        address = user.address,
+//                        storeMultiCashier = user.storeMultiCashier,
+//                        policy = user.policy,
+//                        advertisementImg = user.advertisementImg,
+//                        isAdvertisement = user.isAdvertisement,
+//                        alt = user.alt,
+//                        original = user.original,
+//                        thumbnail = user.thumbnail,
+//                        locationName = location.name,
+//                        locationAddress = location.address,
+//                        locationStatus = location.status,
+//                        zipCode = location.zipCode,
+//                        taxValue = location.taxValue,
+//                        taxTitle = location.taxTitle,
+//                        startTime = location.startTime,
+//                        endTime = location.endTime,
+//                        locationMultiCashier = location.multiCashier,
+//                        registerId = register.id,
+//                        registerName = register.name,
+//                        registerStatus = register.status
+//                    )
+//
+//                    repository.insertActiveUserDetailsIntoLocalDB(activeUserDetails)
+
 //                    _verifyPinUiEvent.value = VerifyPinUiEvent.NavigateToCashDenomination
-//                }
+                }
 
                 _verifyPinUiEvent.value = VerifyPinUiEvent.HideLoading
 

@@ -38,6 +38,4 @@ interface LoginRepository {
 
     suspend fun insertLocationsIntoLocalDB(locationsList: List<Locations>, storeID: Int)
 
-    suspend fun getUser(pin: String): AllStoreUsers?
-
 }

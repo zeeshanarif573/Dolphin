@@ -9,7 +9,8 @@ import android.widget.ArrayAdapter
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.retail.dolphinpos.domain.model.auth.select_registers.reponse.GetStoreRegistersData
+import com.retail.dolphinpos.domain.model.auth.login.response.Locations
+import com.retail.dolphinpos.domain.model.auth.login.response.Registers
 import com.retail.dolphinpos.presentation.R
 import com.retail.dolphinpos.presentation.databinding.FragmentSelectRegisterBinding
 import com.retail.dolphinpos.presentation.features.base.BaseFragment
@@ -20,26 +21,24 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class SelectRegisterFragment :
     BaseFragment<FragmentSelectRegisterBinding>(FragmentSelectRegisterBinding::inflate) {
-
     private val viewModel by viewModels<SelectRegisterViewModel>()
-    var storeID = 0
+    var locationID = 0
     var storeRegisterID = 0
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        storeRegistersObserver()
+        binding.textViewTitle.text = "Welcome ${viewModel.getName()}"
         eventObserver()
         clickEvents()
     }
 
     private fun clickEvents() {
         binding.continueActionButton.setOnSafeClickListener {
-            viewModel.updateStoreRegister(storeID, storeRegisterID)
+            viewModel.updateStoreRegister(locationID, storeRegisterID)
         }
 
         binding.refreshLayout.setOnRefreshListener {
             binding.refreshLayout.isRefreshing = false
-//            viewModel.getStoreRegisters()
         }
 
         binding.logout.setOnSafeClickListener {
@@ -47,54 +46,9 @@ class SelectRegisterFragment :
         }
 
         requireActivity().onBackPressedDispatcher.addCallback(
-            viewLifecycleOwner,
-            object : OnBackPressedCallback(true) {
+            viewLifecycleOwner, object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {}
             })
-    }
-
-    private fun welcomeUserText() {
-        binding.textViewTitle.text = "Welcome ${viewModel.getUsername()}"
-    }
-
-    private fun storeRegistersObserver() {
-//        viewModel.storeRegisters.observe(viewLifecycleOwner) { list ->
-//            if (!list.isNullOrEmpty()) {
-//                binding.tvSelectRegisterHint.visibility = GONE
-//                val adapter = ArrayAdapter(
-//                    requireContext(),
-//                    android.R.layout.simple_spinner_item,
-//                    list.map { it.name }
-//                )
-//                adapter.setDropDownViewResource(R.layout.item_dropdown)
-//                binding.spRegisters.adapter = adapter
-//
-//                // set item selected listener
-//                binding.spRegisters.onItemSelectedListener =
-//                    object : AdapterView.OnItemSelectedListener {
-//                        override fun onItemSelected(
-//                            parent: AdapterView<*>,
-//                            view: View?,
-//                            position: Int,
-//                            id: Long
-//                        ) {
-//                            val selectedRegister: GetStoreRegistersData = list[position]
-//                            storeID = selectedRegister.storeId
-//                            storeRegisterID = selectedRegister.id
-//                        }
-//
-//                        override fun onNothingSelected(parent: AdapterView<*>) {
-//                            // handle if needed
-//                        }
-//                    }
-//
-//            } else {
-//                binding.tvSelectRegisterHint.visibility = VISIBLE
-//                Utils.showErrorDialog(
-//                    requireContext(), message = getString(R.string.registers_in_use)
-//                )
-//            }
-//        }
     }
 
     private fun eventObserver() {
@@ -108,8 +62,60 @@ class SelectRegisterFragment :
                     requireContext(), message = event.message
                 )
 
-                is SelectRegisterUiEvent.PopulateLocationsList -> {}
+                is SelectRegisterUiEvent.PopulateLocationsList -> {
+                    binding.tvSelectLocationHint.visibility =
+                        if (event.locationsList.isNotEmpty()) GONE else VISIBLE
+
+                    val adapter = ArrayAdapter(
+                        requireContext(),
+                        android.R.layout.simple_spinner_item,
+                        event.locationsList.map { it.name })
+                    adapter.setDropDownViewResource(R.layout.item_dropdown)
+                    binding.spLocations.adapter = adapter
+
+                    binding.spLocations.onItemSelectedListener =
+                        object : AdapterView.OnItemSelectedListener {
+                            override fun onItemSelected(
+                                parent: AdapterView<*>, view: View?, position: Int, id: Long
+                            ) {
+                                val selectedLocation: Locations = event.locationsList[position]
+                                locationID = selectedLocation.id
+                                viewModel.getStoreRegisters(locationID)
+                            }
+
+                            override fun onNothingSelected(parent: AdapterView<*>) {
+                                // handle if needed
+                            }
+                        }
+                }
+
+                is SelectRegisterUiEvent.PopulateRegistersList -> {
+                    binding.tvSelectRegisterHint.visibility =
+                        if (event.registersList.isNotEmpty()) GONE else VISIBLE
+
+                    val adapter = ArrayAdapter(
+                        requireContext(),
+                        android.R.layout.simple_spinner_item,
+                        event.registersList.map { it.name })
+                    adapter.setDropDownViewResource(R.layout.item_dropdown)
+                    binding.spRegisters.adapter = adapter
+
+                    binding.spRegisters.onItemSelectedListener =
+                        object : AdapterView.OnItemSelectedListener {
+                            override fun onItemSelected(
+                                parent: AdapterView<*>, view: View?, position: Int, id: Long
+                            ) {
+                                val selectedRegister: Registers = event.registersList[position]
+                                storeRegisterID = selectedRegister.id
+                            }
+
+                            override fun onNothingSelected(parent: AdapterView<*>) {
+                                // handle if needed
+                            }
+                        }
+                }
             }
         }
     }
+
 }

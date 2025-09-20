@@ -43,9 +43,7 @@ class LoginViewModel @Inject constructor(
                         loginData.user.storeId,
                         loginData.user.locationId
                     )
-//                    Log.e("User", "${repository.getUser("1234")}")
-//                    Log.e("Store", "${repository.getStoreWithLocationAndRegisters()}")
-//                    _loginUiEvent.value = LoginUiEvent.NavigateToRegister
+                    _loginUiEvent.value = LoginUiEvent.NavigateToRegister
 
                 } ?: run {
                     _loginUiEvent.value =
@@ -60,7 +58,7 @@ class LoginViewModel @Inject constructor(
 
     private fun setPreferences(loginData: LoginData, password: String) {
         preferenceManager.setStoreID(loginData.storeInfo.id)
-        loginData.user.username?.let { preferenceManager.setUsername(it) }
+        loginData.user.name?.let { preferenceManager.setName(it) }
         preferenceManager.setPassword(password)
         preferenceManager.setAccessToken(loginData.accessToken)
         preferenceManager.setRefreshToken(loginData.refreshToken)

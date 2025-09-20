@@ -1,10 +1,12 @@
 package com.retail.dolphinpos.data.mapper
 
-import com.retail.dolphinpos.data.entities.LocationEntity
-import com.retail.dolphinpos.data.entities.RegisterEntity
-import com.retail.dolphinpos.data.entities.StoreEntity
-import com.retail.dolphinpos.data.entities.StoreLogoUrlEntity
-import com.retail.dolphinpos.data.entities.UserEntity
+import com.retail.dolphinpos.data.entities.user.ActiveUserDetailsEntity
+import com.retail.dolphinpos.data.entities.user.LocationEntity
+import com.retail.dolphinpos.data.entities.user.RegisterEntity
+import com.retail.dolphinpos.data.entities.user.StoreEntity
+import com.retail.dolphinpos.data.entities.user.StoreLogoUrlEntity
+import com.retail.dolphinpos.data.entities.user.UserEntity
+import com.retail.dolphinpos.domain.model.active_user.ActiveUserDetails
 import com.retail.dolphinpos.domain.model.auth.login.response.AllStoreUsers
 import com.retail.dolphinpos.domain.model.auth.login.response.Locations
 import com.retail.dolphinpos.domain.model.auth.login.response.Registers
@@ -82,6 +84,44 @@ object UserMapper {
             name = register.name,
             status = register.status,
             locationId = register.locationId
+        )
+    }
+
+    fun toActiveUserDetailsEntity(activeUserDetails: ActiveUserDetails): ActiveUserDetailsEntity {
+        return ActiveUserDetailsEntity(
+            id = activeUserDetails.id,
+            name = activeUserDetails.name,
+            email = activeUserDetails.email,
+            username = activeUserDetails.username,
+            password = activeUserDetails.password,
+            pin = activeUserDetails.pin,
+            userStatus = activeUserDetails.userStatus,
+            phoneNo = activeUserDetails.phoneNo,
+            storeId = activeUserDetails.storeId,
+            locationId = activeUserDetails.locationId,
+            roleId = activeUserDetails.roleId,
+            roleTitle = activeUserDetails.roleTitle,
+            storeName = activeUserDetails.storeName,
+            address = activeUserDetails.address,
+            storeMultiCashier = activeUserDetails.storeMultiCashier,
+            policy = activeUserDetails.policy,
+            advertisementImg = activeUserDetails.advertisementImg,
+            isAdvertisement = activeUserDetails.isAdvertisement,
+            alt = activeUserDetails.alt,
+            original = activeUserDetails.original,
+            thumbnail = activeUserDetails.thumbnail,
+            locationName = activeUserDetails.locationName,
+            locationAddress = activeUserDetails.locationAddress,
+            locationStatus = activeUserDetails.locationStatus,
+            zipCode = activeUserDetails.zipCode,
+            taxValue = activeUserDetails.taxValue,
+            taxTitle = activeUserDetails.taxTitle,
+            startTime = activeUserDetails.startTime,
+            endTime = activeUserDetails.endTime,
+            locationMultiCashier = activeUserDetails.locationMultiCashier,
+            registerId = activeUserDetails.registerId,
+            registerName = activeUserDetails.registerName,
+            registerStatus = activeUserDetails.registerStatus
         )
     }
 
@@ -198,4 +238,28 @@ object UserMapper {
         }
     }
 
+    fun toLocationAgainstLocationID(locationEntity: LocationEntity): Locations {
+        return Locations(
+            id = locationEntity.id,
+            name = locationEntity.name,
+            address = locationEntity.address,
+            status = locationEntity.status,
+            zipCode = locationEntity.zipCode,
+            taxValue = locationEntity.taxValue,
+            taxTitle = locationEntity.taxTitle,
+            startTime = locationEntity.startTime,
+            endTime = locationEntity.endTime,
+            multiCashier = locationEntity.multiCashier,
+            registers = null
+        )
+    }
+
+    fun toRegisterAgainstRegisterID(registerEntity: RegisterEntity): Registers {
+        return Registers(
+            id = registerEntity.id,
+            name = registerEntity.name,
+            status = registerEntity.status,
+            locationId = registerEntity.locationId
+        )
+    }
 }

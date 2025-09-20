@@ -1,10 +1,46 @@
 package com.retail.dolphinpos.data.repositories
 
 import com.retail.dolphinpos.data.dao.UserDao
+import com.retail.dolphinpos.data.mapper.UserMapper
+import com.retail.dolphinpos.domain.model.active_user.ActiveUserDetails
+import com.retail.dolphinpos.domain.model.auth.login.response.AllStoreUsers
+import com.retail.dolphinpos.domain.model.auth.login.response.Locations
+import com.retail.dolphinpos.domain.model.auth.login.response.Registers
 import com.retail.dolphinpos.domain.repositories.VerifyPinRepository
 
 class VerifyPinRepositoryImpl(
-   private val userDao: UserDao
+    private val userDao: UserDao
 ) : VerifyPinRepository {
+
+    override suspend fun getUser(pin: String): AllStoreUsers? {
+        val userEntity = userDao.getUserByPin(pin)
+        return if (userEntity != null) {
+            UserMapper.toUsers(userEntity)
+        } else {
+            null
+        }
+    }
+
+    override suspend fun getLocationByLocationID(locationID: Int): Locations {
+        val locationEntities = userDao.getLocationByLocationId(locationID)
+        return UserMapper.toLocationAgainstLocationID(locationEntities)
+    }
+
+    override suspend fun getRegisterByRegisterID(locationID: Int): Registers {
+        val registerEntities = userDao.getRegisterByRegisterId(locationID)
+        return UserMapper.toRegisterAgainstRegisterID(registerEntities)
+    }
+
+    override suspend fun insertActiveUserDetailsIntoLocalDB(activeUserDetails: ActiveUserDetails) {
+        try {
+            userDao.insertActiveUserDetails(
+                UserMapper.toActiveUserDetailsEntity(
+                    activeUserDetails
+                )
+            )
+        } catch (e: Exception) {
+            throw e
+        }
+    }
 
 }

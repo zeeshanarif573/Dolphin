@@ -6,9 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.retail.dolphinpos.common.PreferenceManager
-import com.retail.dolphinpos.domain.model.auth.login.response.Locations
-import com.retail.dolphinpos.domain.model.auth.login.response.Registers
-import com.retail.dolphinpos.domain.model.auth.select_registers.reponse.GetStoreRegistersData
 import com.retail.dolphinpos.domain.model.auth.select_registers.request.UpdateStoreRegisterRequest
 import com.retail.dolphinpos.domain.repositories.StoreRegistersRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -51,17 +48,42 @@ class SelectRegisterViewModel @Inject constructor(
         }
     }
 
-    fun updateStoreRegister(storeID: Int, storeRegisterID: Int) {
+    fun getStoreRegisters(locationID: Int) {
+        viewModelScope.launch {
+            _selectRegisterUiEvent.value = SelectRegisterUiEvent.ShowLoading
+            try {
+                val response =
+                    storeRegistersRepository.getRegistersByLocationID(locationID)
+                _selectRegisterUiEvent.value = SelectRegisterUiEvent.HideLoading
+                if (response.isNotEmpty()) {
+                    _selectRegisterUiEvent.value =
+                        SelectRegisterUiEvent.PopulateRegistersList(response)
+                } else
+                    SelectRegisterUiEvent.ShowError("No Registers Found")
+
+            } catch (e: Exception) {
+                _selectRegisterUiEvent.value = SelectRegisterUiEvent.HideLoading
+                _selectRegisterUiEvent.value =
+                    SelectRegisterUiEvent.ShowError(e.message ?: "Something went wrong")
+            }
+        }
+    }
+
+    fun updateStoreRegister(locationID: Int, storeRegisterID: Int) {
         viewModelScope.launch {
             _selectRegisterUiEvent.value = SelectRegisterUiEvent.ShowLoading
             try {
                 val response = storeRegistersRepository.updateStoreRegister(
-                    UpdateStoreRegisterRequest(storeID, storeRegisterID)
+                    UpdateStoreRegisterRequest(
+                        preferenceManager.getStoreID(),
+                        locationID,
+                        storeRegisterID
+                    )
                 )
                 response.message.let {
-                    preferenceManager.setStoreRegisterID(storeRegisterID)
                     preferenceManager.setRegister(true)
-
+                    preferenceManager.setOccupiedLocationID(locationID)
+                    preferenceManager.setOccupiedRegisterID(storeRegisterID)
                     _selectRegisterUiEvent.value = SelectRegisterUiEvent.NavigateToPinScreen
                 }
                 _selectRegisterUiEvent.value = SelectRegisterUiEvent.HideLoading
@@ -93,7 +115,7 @@ class SelectRegisterViewModel @Inject constructor(
         }
     }
 
-    fun getUsername(): String {
-        return preferenceManager.getUsername()
+    fun getName(): String {
+        return preferenceManager.getName()
     }
 }

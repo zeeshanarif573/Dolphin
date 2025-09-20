@@ -4,11 +4,12 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.retail.dolphinpos.data.entities.LocationEntity
-import com.retail.dolphinpos.data.entities.RegisterEntity
-import com.retail.dolphinpos.data.entities.StoreEntity
-import com.retail.dolphinpos.data.entities.StoreLogoUrlEntity
-import com.retail.dolphinpos.data.entities.UserEntity
+import com.retail.dolphinpos.data.entities.user.ActiveUserDetailsEntity
+import com.retail.dolphinpos.data.entities.user.LocationEntity
+import com.retail.dolphinpos.data.entities.user.RegisterEntity
+import com.retail.dolphinpos.data.entities.user.StoreEntity
+import com.retail.dolphinpos.data.entities.user.StoreLogoUrlEntity
+import com.retail.dolphinpos.data.entities.user.UserEntity
 
 @Dao
 interface UserDao {
@@ -42,5 +43,14 @@ interface UserDao {
 
     @Query("SELECT * FROM location_registers WHERE locationID = :locationID")
     suspend fun getRegistersByLocationId(locationID: Int?): List<RegisterEntity>
+
+    @Query("SELECT * FROM store_locations WHERE id = :locationID")
+    suspend fun getLocationByLocationId(locationID: Int?): LocationEntity
+
+    @Query("SELECT * FROM location_registers WHERE id = :registerID")
+    suspend fun getRegisterByRegisterId(registerID: Int?): RegisterEntity
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertActiveUserDetails(activeUserDetailsEntity: ActiveUserDetailsEntity)
 
 }

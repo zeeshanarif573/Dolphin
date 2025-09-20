@@ -16,6 +16,6 @@ interface StoreRegistersRepository {
 
     suspend fun getLocations(storeID: Int): List<Locations>
 
-    suspend fun getRegistersByLocationID(locationID: Int): List<Registers>?
+    suspend fun getRegistersByLocationID(locationID: Int): List<Registers>
 
 }

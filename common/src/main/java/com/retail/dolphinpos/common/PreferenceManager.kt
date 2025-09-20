@@ -20,14 +20,6 @@ class PreferenceManager @Inject constructor(
         return prefs.getBoolean(Constants.SET_REGISTER, defaultValue)
     }
 
-    fun setStoreRegisterID(value: Int) {
-        prefs.edit { putInt(Constants.STORE_REGISTER_ID, value) }
-    }
-
-    fun getStoreRegisterID(defaultValue: Int = 0): Int {
-        return prefs.getInt(Constants.STORE_REGISTER_ID, defaultValue)
-    }
-
     fun setLogin(value: Boolean) {
         prefs.edit { putBoolean(Constants.IS_LOGIN, value) }
     }
@@ -68,22 +60,12 @@ class PreferenceManager @Inject constructor(
         return prefs.getInt(Constants.STORE_ID, defaultValue)
     }
 
-    fun setManagerID(value: Int?) {
-        prefs.edit {
-            putInt(Constants.MANAGER_ID, value ?: -1)
-        }
+    fun setName(value: String) {
+        prefs.edit { putString(Constants.NAME, value) }
     }
 
-    fun getManagerID(defaultValue: Int = 0): Int {
-        return prefs.getInt(Constants.MANAGER_ID, defaultValue)
-    }
-
-    fun setUsername(value: String) {
-        prefs.edit { putString(Constants.USERNAME, value) }
-    }
-
-    fun getUsername(defaultValue: String = ""): String {
-        return prefs.getString(Constants.USERNAME, defaultValue) ?: defaultValue
+    fun getName(defaultValue: String = ""): String {
+        return prefs.getString(Constants.NAME, defaultValue) ?: defaultValue
     }
 
     fun setPassword(value: String) {
@@ -92,6 +74,22 @@ class PreferenceManager @Inject constructor(
 
     fun getPassword(defaultValue: String = ""): String {
         return prefs.getString(Constants.PASSWORD, defaultValue) ?: defaultValue
+    }
+
+    fun setOccupiedLocationID(value: Int) {
+        prefs.edit { putInt(Constants.OCCUPIED_LOCATION_ID, value) }
+    }
+
+    fun getOccupiedLocationID(defaultValue: Int = 0): Int {
+        return prefs.getInt(Constants.OCCUPIED_LOCATION_ID, defaultValue)
+    }
+
+    fun setOccupiedRegisterID(value: Int) {
+        prefs.edit { putInt(Constants.OCCUPIED_REGISTER_ID, value) }
+    }
+
+    fun getOccupiedRegisterID(defaultValue: Int = 0): Int {
+        return prefs.getInt(Constants.OCCUPIED_REGISTER_ID, defaultValue)
     }
 
 }

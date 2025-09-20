@@ -8,8 +8,10 @@ object Constants {
     const val REFRESH_TOKEN = "refresh_token"
     const val USER_ID = "user_id"
     const val STORE_ID = "store_id"
-    const val MANAGER_ID = "manager_id"
-    const val STORE_REGISTER_ID = "store_register_id"
-    const val USERNAME = "username"
+
+    const val OCCUPIED_LOCATION_ID = "occupied_location_id"
+
+    const val OCCUPIED_REGISTER_ID = "occupied_register_id"
+    const val NAME = "name"
     const val PASSWORD = "password"
 }
