@@ -33,7 +33,7 @@ interface UserDao {
     suspend fun getUserByPin(pin: String): UserEntity?
 
     @Query("SELECT * FROM store")
-    suspend fun getStore(): StoreEntity?
+    suspend fun getStore(): StoreEntity
 
     @Query("SELECT * FROM store_logo_url WHERE storeID = :storeId")
     suspend fun getStoreLogoUrl(storeId: Int?): StoreLogoUrlEntity?
@@ -52,5 +52,8 @@ interface UserDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertActiveUserDetails(activeUserDetailsEntity: ActiveUserDetailsEntity)
+
+    @Query("SELECT * FROM active_user_entity WHERE pin = :pin")
+    suspend fun getActiveUserDetailsByPin(pin: String): ActiveUserDetailsEntity
 
 }

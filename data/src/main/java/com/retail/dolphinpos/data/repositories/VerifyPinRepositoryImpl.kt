@@ -6,6 +6,7 @@ import com.retail.dolphinpos.domain.model.active_user.ActiveUserDetails
 import com.retail.dolphinpos.domain.model.auth.login.response.AllStoreUsers
 import com.retail.dolphinpos.domain.model.auth.login.response.Locations
 import com.retail.dolphinpos.domain.model.auth.login.response.Registers
+import com.retail.dolphinpos.domain.model.auth.login.response.Store
 import com.retail.dolphinpos.domain.repositories.VerifyPinRepository
 
 class VerifyPinRepositoryImpl(
@@ -19,6 +20,11 @@ class VerifyPinRepositoryImpl(
         } else {
             null
         }
+    }
+
+    override suspend fun getStore(): Store {
+        val storeEntity = userDao.getStore()
+        return UserMapper.toStoreAgainstStoreID(storeEntity)
     }
 
     override suspend fun getLocationByLocationID(locationID: Int): Locations {
@@ -41,6 +47,11 @@ class VerifyPinRepositoryImpl(
         } catch (e: Exception) {
             throw e
         }
+    }
+
+    override suspend fun getActiveUserDetailsByPin(pin: String): ActiveUserDetails {
+        val activeUserDetailEntities = userDao.getActiveUserDetailsByPin(pin)
+        return UserMapper.toActiveUserDetailsAgainstPin(activeUserDetailEntities)
     }
 
 }

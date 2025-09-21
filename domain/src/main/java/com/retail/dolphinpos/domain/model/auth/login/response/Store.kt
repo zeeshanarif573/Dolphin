@@ -8,6 +8,6 @@ data class Store(
     val policy: String?,
     val advertisementImg: String?,
     val isAdvertisement: Int?,
-    val logoUrl: StoreLogoUrl,
-    val locations: List<Locations>,
+    val logoUrl: StoreLogoUrl?,
+    val locations: List<Locations>?,
 )

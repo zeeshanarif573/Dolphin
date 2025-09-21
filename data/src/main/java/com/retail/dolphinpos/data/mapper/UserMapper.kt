@@ -238,6 +238,20 @@ object UserMapper {
         }
     }
 
+    fun toStoreAgainstStoreID(storeEntity: StoreEntity): Store {
+        return Store(
+            id = storeEntity.id,
+            name = storeEntity.name,
+            address = storeEntity.address,
+            multiCashier = storeEntity.multiCashier,
+            policy = storeEntity.policy,
+            advertisementImg = storeEntity.advertisementImg,
+            isAdvertisement = storeEntity.isAdvertisement,
+            logoUrl = null,
+            locations = null
+        )
+    }
+
     fun toLocationAgainstLocationID(locationEntity: LocationEntity): Locations {
         return Locations(
             id = locationEntity.id,
@@ -260,6 +274,44 @@ object UserMapper {
             name = registerEntity.name,
             status = registerEntity.status,
             locationId = registerEntity.locationId
+        )
+    }
+
+    fun toActiveUserDetailsAgainstPin(entity: ActiveUserDetailsEntity): ActiveUserDetails {
+        return ActiveUserDetails(
+            id = entity.id,
+            name = entity.name,
+            email = entity.email,
+            username = entity.username,
+            password = entity.password,
+            pin = entity.pin,
+            userStatus = entity.userStatus,
+            phoneNo = entity.phoneNo,
+            storeId = entity.storeId,
+            locationId = entity.locationId,
+            roleId = entity.roleId,
+            roleTitle = entity.roleTitle,
+            storeName = entity.storeName,
+            address = entity.address,
+            storeMultiCashier = entity.storeMultiCashier,
+            policy = entity.policy,
+            advertisementImg = entity.advertisementImg,
+            isAdvertisement = entity.isAdvertisement,
+            alt = entity.alt,
+            original = entity.original,
+            thumbnail = entity.thumbnail,
+            locationName = entity.locationName,
+            locationAddress = entity.locationAddress,
+            locationStatus = entity.locationStatus,
+            zipCode = entity.zipCode,
+            taxValue = entity.taxValue,
+            taxTitle = entity.taxTitle,
+            startTime = entity.startTime,
+            endTime = entity.endTime,
+            locationMultiCashier = entity.locationMultiCashier,
+            registerId = entity.registerId,
+            registerName = entity.registerName,
+            registerStatus = entity.registerStatus
         )
     }
 }

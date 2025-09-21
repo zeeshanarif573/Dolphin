@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.retail.dolphinpos.common.PreferenceManager
 import com.retail.dolphinpos.domain.model.active_user.ActiveUserDetails
+import com.retail.dolphinpos.domain.model.auth.login.response.AllStoreUsers
 import com.retail.dolphinpos.domain.repositories.VerifyPinRepository
 import com.retail.dolphinpos.domain.usecases.GetCurrentTimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -47,51 +48,10 @@ class VerifyPinViewModel @Inject constructor(
             try {
                 val response = repository.getUser(pin)
                 if (response == null) _verifyPinUiEvent.value =
-                    VerifyPinUiEvent.ShowError("No record exists against this PIN")
+                    VerifyPinUiEvent.ShowError("No user exist against this PIN")
                 else {
-                    val user = response
-                    val location = repository.getLocationByLocationID(preferenceManager.getOccupiedLocationID())
-                    val register = repository.getRegisterByRegisterID(preferenceManager.getOccupiedRegisterID())
-
-//                    val activeUserDetails = ActiveUserDetails(
-//                        id = user.id,
-//                        name = user.name,
-//                        email = user.email,
-//                        username = user.username,
-//                        password = user.password,
-//                        pin = user.pin,
-//                        userStatus = user.userStatus,
-//                        phoneNo = user.phoneNo,
-//                        storeId = user.storeId,
-//                        locationId = location.id,
-//                        roleId = user.roleId,
-//                        roleTitle = user.roleTitle,
-//                        storeName = user.storeName,
-//                        address = user.address,
-//                        storeMultiCashier = user.storeMultiCashier,
-//                        policy = user.policy,
-//                        advertisementImg = user.advertisementImg,
-//                        isAdvertisement = user.isAdvertisement,
-//                        alt = user.alt,
-//                        original = user.original,
-//                        thumbnail = user.thumbnail,
-//                        locationName = location.name,
-//                        locationAddress = location.address,
-//                        locationStatus = location.status,
-//                        zipCode = location.zipCode,
-//                        taxValue = location.taxValue,
-//                        taxTitle = location.taxTitle,
-//                        startTime = location.startTime,
-//                        endTime = location.endTime,
-//                        locationMultiCashier = location.multiCashier,
-//                        registerId = register.id,
-//                        registerName = register.name,
-//                        registerStatus = register.status
-//                    )
-//
-//                    repository.insertActiveUserDetailsIntoLocalDB(activeUserDetails)
-
-//                    _verifyPinUiEvent.value = VerifyPinUiEvent.NavigateToCashDenomination
+                    insertActiveUserDetails(response, pin)
+                    _verifyPinUiEvent.value = VerifyPinUiEvent.NavigateToCashDenomination
                 }
 
                 _verifyPinUiEvent.value = VerifyPinUiEvent.HideLoading
@@ -102,5 +62,50 @@ class VerifyPinViewModel @Inject constructor(
                     VerifyPinUiEvent.ShowError(e.message ?: "Something went wrong")
             }
         }
+    }
+
+    suspend fun insertActiveUserDetails(allStoreUsers: AllStoreUsers, pin: String) {
+        val user = allStoreUsers
+        val store = repository.getStore()
+        val location = repository.getLocationByLocationID(preferenceManager.getOccupiedLocationID())
+        val register = repository.getRegisterByRegisterID(preferenceManager.getOccupiedRegisterID())
+
+        val activeUserDetails = ActiveUserDetails(
+            id = user.id,
+            name = user.name,
+            email = user.email,
+            username = user.username,
+            password = user.password,
+            pin = user.pin,
+            userStatus = user.status,
+            phoneNo = user.phoneNo,
+            storeId = user.storeId,
+            locationId = location.id,
+            roleId = user.roleId,
+            roleTitle = user.roleTitle,
+            storeName = store.name,
+            address = store.address,
+            storeMultiCashier = store.multiCashier,
+            policy = store.policy,
+            advertisementImg = store.advertisementImg,
+            isAdvertisement = store.isAdvertisement,
+            alt = store.logoUrl?.alt,
+            original = store.logoUrl?.original,
+            thumbnail = store.logoUrl?.thumbnail,
+            locationName = location.name,
+            locationAddress = location.address,
+            locationStatus = location.status,
+            zipCode = location.zipCode,
+            taxValue = location.taxValue,
+            taxTitle = location.taxTitle,
+            startTime = location.startTime,
+            endTime = location.endTime,
+            locationMultiCashier = location.multiCashier,
+            registerId = register.id,
+            registerName = register.name,
+            registerStatus = register.status
+        )
+        repository.insertActiveUserDetailsIntoLocalDB(activeUserDetails)
+        Log.e("ActiveUserDetails", repository.getActiveUserDetailsByPin(pin).toString())
     }
 }

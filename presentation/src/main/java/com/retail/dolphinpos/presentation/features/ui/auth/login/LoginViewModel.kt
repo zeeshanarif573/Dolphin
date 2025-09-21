@@ -33,16 +33,20 @@ class LoginViewModel @Inject constructor(
 
                 response.loginData?.let { loginData ->
                     setPreferences(loginData, password)
-                    repository.insertUsersDataIntoLocalDB(
-                        loginData.allStoreUsers,
-                        loginData.storeInfo,
-                        loginData.storeInfo.logoUrl,
-                        loginData.storeInfo.locations,
-                        preferenceManager.getPassword(),
-                        loginData.user.id,
-                        loginData.user.storeId,
-                        loginData.user.locationId
-                    )
+                    loginData.storeInfo.logoUrl?.let {
+                        loginData.storeInfo.locations?.let { locationsList ->
+                            repository.insertUsersDataIntoLocalDB(
+                                loginData.allStoreUsers,
+                                loginData.storeInfo,
+                                it,
+                                locationsList,
+                                preferenceManager.getPassword(),
+                                loginData.user.id,
+                                loginData.user.storeId,
+                                loginData.user.locationId
+                            )
+                        }
+                    }
                     _loginUiEvent.value = LoginUiEvent.NavigateToRegister
 
                 } ?: run {
