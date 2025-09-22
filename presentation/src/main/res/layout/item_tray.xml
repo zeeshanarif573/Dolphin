@@ -8,7 +8,25 @@
     android:layout_marginVertical="@dimen/_4sdp"
     android:background="@drawable/background_cash_counter_tray"
     android:clickable="true"
+    android:focusable="true"
     android:padding="@dimen/_8sdp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/count_label"
+        style="@style/TextAppearance.Label.Large"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAlignment="center"
+        android:textColor="@color/colorTextLightMode"
+        android:textSize="@dimen/_8sdp"
+        android:textStyle="bold"
+        app:fontFamily="@font/general_sans_bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="$1" />
 
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/count_value"
@@ -23,24 +41,8 @@
         android:textColor="@color/colorHint"
         android:textSize="@dimen/text_body_small"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/count_value"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/count_label"
-        style="@style/TextAppearance.Label.Large"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textAlignment="textEnd"
-        android:textColor="@color/colorHint"
-        android:textSize="@dimen/_7sdp"
-        app:fontFamily="@font/general_sans_bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="$1" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/count_label" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

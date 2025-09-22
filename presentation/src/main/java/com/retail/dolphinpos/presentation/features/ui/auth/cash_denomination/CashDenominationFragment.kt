@@ -3,33 +3,61 @@ package com.retail.dolphinpos.presentation.features.ui.auth.cash_denomination
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.retail.dolphinpos.presentation.R
 import com.retail.dolphinpos.presentation.databinding.FragmentCashDenominationBinding
 import com.retail.dolphinpos.presentation.features.base.BaseFragment
 import com.retail.dolphinpos.presentation.features.base.setOnSafeClickListener
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
+import java.text.NumberFormat
+import java.util.*
 
+@AndroidEntryPoint
 class CashDenominationFragment :
     BaseFragment<FragmentCashDenominationBinding>(FragmentCashDenominationBinding::inflate) {
 
+    private val viewModel: CashDenominationViewModel by viewModels()
     private lateinit var keyPadButtons: List<Pair<Int, String>>
-    private lateinit var adapter: TrayAdapter
+    private lateinit var adapter: CashDenominationAdapter
+    private val currencyFormatter = NumberFormat.getCurrencyInstance(Locale.US)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initializeKeypadButtons()
-        clickEvents()
+        setupRecyclerView()
+        setupClickEvents()
+        observeViewModel()
+    }
 
-        val trayList = getCashTrayList()
-        adapter = TrayAdapter(trayList)
+    private fun setupRecyclerView() {
+        adapter = CashDenominationAdapter { denomination ->
+            viewModel.selectDenomination(denomination)
+        }
         binding.trayItemView.adapter = adapter
     }
 
-    private fun clickEvents() {
-        binding.saveAndStartBatchButton.setOnSafeClickListener {}
+    private fun setupClickEvents() {
+        binding.saveAndStartBatchButton.setOnSafeClickListener {
+            // TODO: Implement save and start batch functionality
+        }
+
+        binding.openCashDrawerButton.setOnSafeClickListener {
+            // TODO: Implement open cash drawer functionality
+        }
+
+        binding.keypadActionButtonClear.setOnSafeClickListener {
+            viewModel.clearCount()
+        }
+
+        binding.keypadActionButtonDoubleZero.setOnSafeClickListener {
+            viewModel.addDoubleZero()
+        }
 
         keyPadButtons.forEach { (id, digit) ->
             view?.findViewById<Button>(id)?.setOnClickListener {
-
+                viewModel.addDigit(digit)
             }
         }
     }
@@ -49,81 +77,36 @@ class CashDenominationFragment :
         )
     }
 
-    private fun getCashTrayList() = listOf(
-        Tray.Header(getString(R.string.cash_tray)),
-        Tray.Item(
-            getString(R.string.cash_1),
-            getString(R.string.dollar_one),
-            1.0,
-            0,
-            TrayType.CASH,
-            isSelected = true
-        ),
-        Tray.Item(
-            getString(R.string.cash_5),
-            getString(R.string.dollar_five),
-            5.0,
-            0,
-            TrayType.CASH
-        ),
-        Tray.Item(
-            getString(R.string.cash_10),
-            getString(R.string.dollar_ten),
-            10.0,
-            0,
-            TrayType.CASH
-        ),
-        Tray.Item(
-            getString(R.string.cash_20),
-            getString(R.string.dollar_twenty),
-            20.0,
-            0,
-            TrayType.CASH
-        ),
-        Tray.Item(
-            getString(R.string.cash_50),
-            getString(R.string.dollar_fifty),
-            50.0,
-            0,
-            TrayType.CASH
-        ),
-        Tray.Item(
-            getString(R.string.cash_100),
-            getString(R.string.dollar_hundred),
-            100.0,
-            0,
-            TrayType.CASH
-        ),
+    private fun observeViewModel() {
+        // Observe denominations and update adapter
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.denominations.collect { denominations ->
+                adapter.updateDenominations(denominations)
+            }
+        }
 
-        Tray.Header(getString(R.string.coins_tray)),
-        Tray.Item(
-            getString(R.string.coin_0_01),
-            getString(R.string.cent_one),
-            0.01,
-            0,
-            TrayType.COIN
-        ),
-        Tray.Item(
-            getString(R.string.coin_0_05),
-            getString(R.string.cent_five),
-            0.05,
-            0,
-            TrayType.COIN
-        ),
-        Tray.Item(
-            getString(R.string.coin_0_1),
-            getString(R.string.cent_ten),
-            0.1,
-            0,
-            TrayType.COIN
-        ),
-        Tray.Item(
-            getString(R.string.coin_0_25),
-            getString(R.string.cent_twenty_five),
-            0.25,
-            0,
-            TrayType.COIN
-        )
-    )
+        // Observe total amount and update UI
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.totalAmount.collect { total ->
+                binding.cashValue.text = currencyFormatter.format(total)
+            }
+        }
 
+        // Observe current count and update counter display
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.currentCount.collect { count ->
+                binding.startBatchAmount.setText(count)
+            }
+        }
+
+        // Observe selected denomination
+        viewModel.selectedDenomination.observe(viewLifecycleOwner) { denomination ->
+            if (denomination != null) {
+                // Update UI to show selected denomination
+                binding.counterLabel.text = "Count for ${denomination.label}"
+            }
+            // Update adapter to highlight selected denomination
+            adapter.updateSelectedDenomination(denomination)
+        }
+    }
 }
