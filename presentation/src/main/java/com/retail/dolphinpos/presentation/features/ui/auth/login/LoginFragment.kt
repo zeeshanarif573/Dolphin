@@ -39,10 +39,13 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
             when (event) {
                 is LoginUiEvent.ShowLoading -> Utils.showLoader(requireContext())
                 is LoginUiEvent.HideLoading -> Utils.hideLoader()
-                is LoginUiEvent.ShowError -> Utils.showErrorDialog(
-                    requireContext(),
-                    message = event.message
-                )
+                is LoginUiEvent.ShowError -> {
+                    Utils.showCustomErrorDialog(
+                        context = requireContext(),
+                        message = event.message,
+                        cancellable = false
+                    ) {}
+                }
 
                 is LoginUiEvent.NavigateToRegister -> {
                     findNavController().navigate(R.id.action_loginFragment_to_selectRegisterFragment2)

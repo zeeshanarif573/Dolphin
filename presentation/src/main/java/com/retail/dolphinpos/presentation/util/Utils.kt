@@ -2,13 +2,17 @@ package com.retail.dolphinpos.presentation.util
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Color
+import android.view.LayoutInflater
 import android.view.Window
 import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import androidx.core.graphics.drawable.toDrawable
 import com.retail.dolphinpos.presentation.R
+import com.retail.dolphinpos.presentation.databinding.DialogErrorBinding
 
 object Utils {
 
@@ -43,16 +47,35 @@ object Utils {
 
 
     // ✅ Error Dialog
-    fun showErrorDialog(
+    fun showCustomErrorDialog(
         context: Context,
-        title: String = "Alert",
         message: String,
+        buttonText: String = "OK",
+        iconRes: Int? = R.drawable.cross_red,
+        cancellable: Boolean = false,
+        onActionClick: (() -> Unit)? = null
     ) {
-        AlertDialog.Builder(context)
-            .setTitle(title)
-            .setMessage(message)
-            .setNegativeButton("OK") { dialog, _ -> dialog.dismiss() }
-            .show()
+        val binding = DialogErrorBinding.inflate(LayoutInflater.from(context))
+
+        val dialog = AlertDialog.Builder(context)
+            .setView(binding.root)
+            .setCancelable(cancellable)
+            .create()
+
+        dialog.window?.setBackgroundDrawable(Color.TRANSPARENT.toDrawable())
+        binding.tvMessage.text = message
+        binding.btnTryAgain.text = buttonText
+        iconRes?.let { binding.imgIcon.setImageResource(it) }
+        binding.btnTryAgain.setOnClickListener {
+            dialog.dismiss()
+            onActionClick?.invoke()
+        }
+
+        binding.btnClose.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
     }
 
     // ✅ Handle Button Disability

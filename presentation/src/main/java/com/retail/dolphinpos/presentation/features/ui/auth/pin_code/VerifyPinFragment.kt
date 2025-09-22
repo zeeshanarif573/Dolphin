@@ -1,8 +1,11 @@
 package com.retail.dolphinpos.presentation.features.ui.auth.pin_code
 
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
@@ -98,10 +101,14 @@ class VerifyPinFragment :
             when (event) {
                 is VerifyPinUiEvent.ShowLoading -> Utils.showLoader(requireContext())
                 is VerifyPinUiEvent.HideLoading -> Utils.hideLoader()
-                is VerifyPinUiEvent.ShowError -> Utils.showErrorDialog(
-                    requireContext(),
-                    message = event.message
-                )
+                is VerifyPinUiEvent.ShowError -> {
+                    Utils.showCustomErrorDialog(
+                        context = requireContext(),
+                        message = "PIN Code Incorrect",
+                        buttonText = "Try Again",
+                        cancellable = false
+                    ) {}
+                }
 
                 is VerifyPinUiEvent.NavigateToCashDenomination -> {
                     findNavController().navigate(R.id.action_pinCodeFragment_to_cashDenominationFragment)
@@ -115,4 +122,5 @@ class VerifyPinFragment :
             requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
+
 }

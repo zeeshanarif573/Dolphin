@@ -58,9 +58,13 @@ class SelectRegisterFragment :
                 SelectRegisterUiEvent.HideLoading -> Utils.hideLoader()
                 SelectRegisterUiEvent.NavigateToPinScreen -> findNavController().navigate(R.id.action_selectRegisterFragment_to_pinCodeFragment)
                 SelectRegisterUiEvent.NavigateToLoginScreen -> findNavController().navigate(R.id.action_selectRegisterFragment_to_loginFragment)
-                is SelectRegisterUiEvent.ShowError -> Utils.showErrorDialog(
-                    requireContext(), message = event.message
-                )
+                is SelectRegisterUiEvent.ShowError -> {
+                    Utils.showCustomErrorDialog(
+                        context = requireContext(),
+                        message = event.message,
+                        cancellable = false
+                    ) {}
+                }
 
                 is SelectRegisterUiEvent.PopulateLocationsList -> {
                     binding.tvSelectLocationHint.visibility =

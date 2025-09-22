@@ -2,6 +2,7 @@ package com.retail.dolphinpos.presentation.features.ui.auth.cash_denomination
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
 import com.retail.dolphinpos.presentation.R
 import com.retail.dolphinpos.presentation.databinding.FragmentCashDenominationBinding
 import com.retail.dolphinpos.presentation.features.base.BaseFragment
@@ -25,6 +26,12 @@ class CashDenominationFragment :
 
     private fun clickEvents() {
         binding.saveAndStartBatchButton.setOnSafeClickListener {}
+
+        keyPadButtons.forEach { (id, digit) ->
+            view?.findViewById<Button>(id)?.setOnClickListener {
+
+            }
+        }
     }
 
     private fun initializeKeypadButtons() {
