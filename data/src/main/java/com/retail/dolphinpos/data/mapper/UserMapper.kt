@@ -1,17 +1,21 @@
 package com.retail.dolphinpos.data.mapper
 
 import com.retail.dolphinpos.data.entities.user.ActiveUserDetailsEntity
+import com.retail.dolphinpos.data.entities.user.BatchEntity
 import com.retail.dolphinpos.data.entities.user.LocationEntity
 import com.retail.dolphinpos.data.entities.user.RegisterEntity
 import com.retail.dolphinpos.data.entities.user.StoreEntity
 import com.retail.dolphinpos.data.entities.user.StoreLogoUrlEntity
 import com.retail.dolphinpos.data.entities.user.UserEntity
-import com.retail.dolphinpos.domain.model.active_user.ActiveUserDetails
+import com.retail.dolphinpos.domain.model.auth.active_user.ActiveUserDetails
+import com.retail.dolphinpos.domain.model.auth.batch.Batch
 import com.retail.dolphinpos.domain.model.auth.login.response.AllStoreUsers
 import com.retail.dolphinpos.domain.model.auth.login.response.Locations
 import com.retail.dolphinpos.domain.model.auth.login.response.Registers
 import com.retail.dolphinpos.domain.model.auth.login.response.Store
 import com.retail.dolphinpos.domain.model.auth.login.response.StoreLogoUrl
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 object UserMapper {
 
@@ -84,6 +88,16 @@ object UserMapper {
             name = register.name,
             status = register.status,
             locationId = register.locationId
+        )
+    }
+
+    fun toBatchEntity(batch: Batch): BatchEntity {
+        return BatchEntity(
+            batchNo = batch.batchNo,
+            storeId = batch.storeId,
+            userId = batch.userId,
+            registerId = batch.registerId,
+            startingCashAmount = batch.startingCashAmount
         )
     }
 
@@ -312,6 +326,16 @@ object UserMapper {
             registerId = entity.registerId,
             registerName = entity.registerName,
             registerStatus = entity.registerStatus
+        )
+    }
+
+    fun toBatchDetails(batchEntity: BatchEntity): Batch {
+        return Batch(
+            batchNo = batchEntity.batchNo,
+            storeId = batchEntity.storeId,
+            userId = batchEntity.userId,
+            registerId = batchEntity.registerId,
+            startingCashAmount = batchEntity.startingCashAmount
         )
     }
 }

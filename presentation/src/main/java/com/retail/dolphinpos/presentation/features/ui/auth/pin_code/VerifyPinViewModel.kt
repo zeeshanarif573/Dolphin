@@ -6,9 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.retail.dolphinpos.common.PreferenceManager
-import com.retail.dolphinpos.domain.model.active_user.ActiveUserDetails
+import com.retail.dolphinpos.domain.model.auth.active_user.ActiveUserDetails
 import com.retail.dolphinpos.domain.model.auth.login.response.AllStoreUsers
-import com.retail.dolphinpos.domain.repositories.VerifyPinRepository
+import com.retail.dolphinpos.domain.repositories.auth.VerifyPinRepository
 import com.retail.dolphinpos.domain.usecases.GetCurrentTimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -51,6 +51,9 @@ class VerifyPinViewModel @Inject constructor(
                     VerifyPinUiEvent.ShowError("No user exist against this PIN")
                 else {
                     insertActiveUserDetails(response, pin)
+                    _verifyPinUiEvent.value = VerifyPinUiEvent.GetActiveUserDetails(
+                        repository.getActiveUserDetailsByPin(pin)
+                    )
                     _verifyPinUiEvent.value = VerifyPinUiEvent.NavigateToCashDenomination
                 }
 
@@ -106,6 +109,5 @@ class VerifyPinViewModel @Inject constructor(
             registerStatus = register.status
         )
         repository.insertActiveUserDetailsIntoLocalDB(activeUserDetails)
-        Log.e("ActiveUserDetails", repository.getActiveUserDetailsByPin(pin).toString())
     }
 }

@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.retail.dolphinpos.domain.model.cash_denomination.Denomination
-import com.retail.dolphinpos.domain.model.cash_denomination.DenominationType
+import com.retail.dolphinpos.domain.model.auth.cash_denomination.Denomination
+import com.retail.dolphinpos.domain.model.auth.cash_denomination.DenominationType
 import com.retail.dolphinpos.presentation.R
 import com.retail.dolphinpos.presentation.databinding.ItemTrayBinding
 import com.retail.dolphinpos.presentation.databinding.ItemTrayHeaderBinding

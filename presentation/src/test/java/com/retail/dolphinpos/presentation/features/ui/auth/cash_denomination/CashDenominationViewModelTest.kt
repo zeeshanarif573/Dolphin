@@ -1,8 +1,6 @@
 package com.retail.dolphinpos.presentation.features.ui.auth.cash_denomination
 
 import app.cash.turbine.test
-import com.retail.dolphinpos.domain.model.cash_denomination.Denomination
-import com.retail.dolphinpos.domain.model.cash_denomination.DenominationType
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Before

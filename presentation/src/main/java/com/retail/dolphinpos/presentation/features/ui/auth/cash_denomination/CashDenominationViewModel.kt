@@ -1,18 +1,25 @@
 package com.retail.dolphinpos.presentation.features.ui.auth.cash_denomination
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.retail.dolphinpos.domain.model.cash_denomination.Denomination
-import com.retail.dolphinpos.domain.model.cash_denomination.DenominationType
+import androidx.lifecycle.viewModelScope
+import com.retail.dolphinpos.domain.model.auth.batch.Batch
+import com.retail.dolphinpos.domain.model.auth.cash_denomination.Denomination
+import com.retail.dolphinpos.domain.model.auth.cash_denomination.DenominationType
+import com.retail.dolphinpos.domain.repositories.auth.CashDenominationRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CashDenominationViewModel @Inject constructor() : ViewModel() {
+class CashDenominationViewModel @Inject constructor(
+    private val repository: CashDenominationRepository,
+) : ViewModel() {
 
     private val _denominations = MutableStateFlow<List<Denomination>>(emptyList())
     val denominations: StateFlow<List<Denomination>> = _denominations.asStateFlow()
@@ -42,14 +49,14 @@ class CashDenominationViewModel @Inject constructor() : ViewModel() {
             Denomination(10.0, 0, "$10", DenominationType.CASH),
             Denomination(5.0, 0, "$5", DenominationType.CASH),
             Denomination(1.0, 0, "$1", DenominationType.CASH),
-            
+
             // Coin denominations
             Denomination(0.25, 0, "$0.25", DenominationType.COIN),
             Denomination(0.10, 0, "$0.10", DenominationType.COIN),
             Denomination(0.05, 0, "$0.05", DenominationType.COIN),
             Denomination(0.01, 0, "$0.01", DenominationType.COIN)
         )
-        
+
         _denominations.value = denominationsList
         calculateTotal()
     }
@@ -63,7 +70,7 @@ class CashDenominationViewModel @Inject constructor() : ViewModel() {
         val selected = _selectedDenomination.value ?: return
         val updatedDenominations = _denominations.value.toMutableList()
         val index = updatedDenominations.indexOfFirst { it.value == selected.value }
-        
+
         if (index != -1) {
             updatedDenominations[index] = selected.updateCount(count)
             _denominations.value = updatedDenominations
@@ -76,7 +83,7 @@ class CashDenominationViewModel @Inject constructor() : ViewModel() {
         val currentCountValue = _currentCount.value
         val newCount = if (currentCountValue == "0") digit else currentCountValue + digit
         _currentCount.value = newCount
-        
+
         // Update the selected denomination count
         val count = newCount.toIntOrNull() ?: 0
         updateCount(count)
@@ -91,7 +98,7 @@ class CashDenominationViewModel @Inject constructor() : ViewModel() {
         val currentCountValue = _currentCount.value
         val newCount = if (currentCountValue == "0") "00" else currentCountValue + "00"
         _currentCount.value = newCount
-        
+
         // Update the selected denomination count
         val count = newCount.toIntOrNull() ?: 0
         updateCount(count)
@@ -110,4 +117,17 @@ class CashDenominationViewModel @Inject constructor() : ViewModel() {
         calculateTotal()
     }
 
+    fun startBatch(batchNo: String, userId: Int?, storeId: Int?, registerId: Int?) {
+        viewModelScope.launch {
+            val batch = Batch(
+                batchNo = batchNo,
+                userId = userId,
+                storeId = storeId,
+                registerId = registerId,
+                totalAmount.value
+            )
+            repository.insertBatchIntoLocalDB(batch)
+            Log.e("Batch", "Started")
+        }
+    }
 }

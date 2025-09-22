@@ -12,6 +12,7 @@ import com.retail.dolphinpos.presentation.features.base.setOnSafeClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.text.NumberFormat
+import java.text.SimpleDateFormat
 import java.util.*
 
 @AndroidEntryPoint
@@ -31,6 +32,7 @@ class CashDenominationFragment :
         observeViewModel()
     }
 
+
     private fun setupRecyclerView() {
         adapter = CashDenominationAdapter { denomination ->
             viewModel.selectDenomination(denomination)
@@ -38,14 +40,21 @@ class CashDenominationFragment :
         binding.trayItemView.adapter = adapter
     }
 
+    fun generateBatchNo(): String {
+        val sdf = SimpleDateFormat("yyyyMMdd_HHmmss_SSS", Locale.getDefault())
+        val timestamp = sdf.format(Date())
+        return "BATCH_$timestamp"
+    }
+
     private fun setupClickEvents() {
         binding.saveAndStartBatchButton.setOnSafeClickListener {
-            // TODO: Implement save and start batch functionality
+            val userId = arguments?.getInt("userId")
+            val storeId = arguments?.getInt("storeId")
+            val registerId = arguments?.getInt("registerId")
+            viewModel.startBatch(generateBatchNo(), userId, storeId, registerId)
         }
 
-        binding.openCashDrawerButton.setOnSafeClickListener {
-            // TODO: Implement open cash drawer functionality
-        }
+        binding.openCashDrawerButton.setOnSafeClickListener {}
 
         binding.keypadActionButtonClear.setOnSafeClickListener {
             viewModel.clearCount()

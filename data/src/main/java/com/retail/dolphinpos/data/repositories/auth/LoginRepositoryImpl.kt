@@ -1,4 +1,4 @@
-package com.retail.dolphinpos.data.repositories
+package com.retail.dolphinpos.data.repositories.auth
 
 import com.retail.dolphinpos.data.dao.UserDao
 import com.retail.dolphinpos.data.mapper.UserMapper
@@ -7,10 +7,9 @@ import com.retail.dolphinpos.domain.model.auth.login.request.LoginRequest
 import com.retail.dolphinpos.domain.model.auth.login.response.AllStoreUsers
 import com.retail.dolphinpos.domain.model.auth.login.response.Locations
 import com.retail.dolphinpos.domain.model.auth.login.response.LoginResponse
-import com.retail.dolphinpos.domain.model.auth.login.response.Registers
 import com.retail.dolphinpos.domain.model.auth.login.response.Store
 import com.retail.dolphinpos.domain.model.auth.login.response.StoreLogoUrl
-import com.retail.dolphinpos.domain.repositories.LoginRepository
+import com.retail.dolphinpos.domain.repositories.auth.LoginRepository
 
 class LoginRepositoryImpl(
     private val api: ApiService, private val userDao: UserDao

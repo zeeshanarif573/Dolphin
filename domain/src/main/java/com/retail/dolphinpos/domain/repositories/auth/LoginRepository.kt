@@ -1,4 +1,4 @@
-package com.retail.dolphinpos.domain.repositories
+package com.retail.dolphinpos.domain.repositories.auth
 
 import com.retail.dolphinpos.domain.model.auth.login.request.LoginRequest
 import com.retail.dolphinpos.domain.model.auth.login.response.AllStoreUsers

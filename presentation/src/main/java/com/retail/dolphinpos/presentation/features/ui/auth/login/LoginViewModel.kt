@@ -8,7 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.retail.dolphinpos.common.PreferenceManager
 import com.retail.dolphinpos.domain.model.auth.login.request.LoginRequest
 import com.retail.dolphinpos.domain.model.auth.login.response.LoginData
-import com.retail.dolphinpos.domain.repositories.LoginRepository
+import com.retail.dolphinpos.domain.repositories.auth.LoginRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.launch

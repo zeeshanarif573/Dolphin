@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.retail.dolphinpos.data.entities.user.ActiveUserDetailsEntity
+import com.retail.dolphinpos.data.entities.user.BatchEntity
 import com.retail.dolphinpos.data.entities.user.LocationEntity
 import com.retail.dolphinpos.data.entities.user.RegisterEntity
 import com.retail.dolphinpos.data.entities.user.StoreEntity
@@ -53,7 +54,13 @@ interface UserDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertActiveUserDetails(activeUserDetailsEntity: ActiveUserDetailsEntity)
 
-    @Query("SELECT * FROM active_user_entity WHERE pin = :pin")
+    @Query("SELECT * FROM active_user_details WHERE pin = :pin")
     suspend fun getActiveUserDetailsByPin(pin: String): ActiveUserDetailsEntity
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertBatchDetails(batchEntity: BatchEntity)
+
+    @Query("SELECT * FROM batch")
+    suspend fun getBatchDetails(): BatchEntity
 
 }

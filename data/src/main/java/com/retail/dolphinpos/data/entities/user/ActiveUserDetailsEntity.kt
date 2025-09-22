@@ -3,7 +3,7 @@ package com.retail.dolphinpos.data.entities.user
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "active_user_entity")
+@Entity(tableName = "active_user_details")
 data class ActiveUserDetailsEntity(
     @PrimaryKey
     val id: Int,

@@ -1,13 +1,13 @@
-package com.retail.dolphinpos.data.repositories
+package com.retail.dolphinpos.data.repositories.auth
 
 import com.retail.dolphinpos.data.dao.UserDao
 import com.retail.dolphinpos.data.mapper.UserMapper
-import com.retail.dolphinpos.domain.model.active_user.ActiveUserDetails
+import com.retail.dolphinpos.domain.model.auth.active_user.ActiveUserDetails
 import com.retail.dolphinpos.domain.model.auth.login.response.AllStoreUsers
 import com.retail.dolphinpos.domain.model.auth.login.response.Locations
 import com.retail.dolphinpos.domain.model.auth.login.response.Registers
 import com.retail.dolphinpos.domain.model.auth.login.response.Store
-import com.retail.dolphinpos.domain.repositories.VerifyPinRepository
+import com.retail.dolphinpos.domain.repositories.auth.VerifyPinRepository
 
 class VerifyPinRepositoryImpl(
     private val userDao: UserDao

@@ -30,6 +30,10 @@ class VerifyPinFragment :
     private var pinBuilder = ""
     private val pinLimit = 4
 
+    private var userId = 0
+    private var storeId = 0
+    private var registerId = 0
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         hideKeyboard()
@@ -110,8 +114,23 @@ class VerifyPinFragment :
                     ) {}
                 }
 
+                is VerifyPinUiEvent.GetActiveUserDetails -> {
+                    userId = event.activeUserDetails.id
+                    storeId = event.activeUserDetails.storeId
+                    registerId = event.activeUserDetails.registerId
+                }
+
                 is VerifyPinUiEvent.NavigateToCashDenomination -> {
-                    findNavController().navigate(R.id.action_pinCodeFragment_to_cashDenominationFragment)
+                    val bundle = Bundle().apply {
+                        putInt("userId", userId)
+                        putInt("storeId", storeId)
+                        putInt("registerId", registerId)
+                    }
+
+                    findNavController().navigate(
+                        R.id.action_pinCodeFragment_to_cashDenominationFragment,
+                        bundle
+                    )
                 }
             }
         }

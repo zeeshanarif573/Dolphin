@@ -1,4 +1,4 @@
-package com.retail.dolphinpos.data.repositories
+package com.retail.dolphinpos.data.repositories.auth
 
 import com.retail.dolphinpos.data.dao.UserDao
 import com.retail.dolphinpos.data.mapper.UserMapper
@@ -9,7 +9,7 @@ import com.retail.dolphinpos.domain.model.auth.logout.LogoutResponse
 import com.retail.dolphinpos.domain.model.auth.select_registers.reponse.GetStoreRegistersResponse
 import com.retail.dolphinpos.domain.model.auth.select_registers.reponse.UpdateStoreRegisterResponse
 import com.retail.dolphinpos.domain.model.auth.select_registers.request.UpdateStoreRegisterRequest
-import com.retail.dolphinpos.domain.repositories.StoreRegistersRepository
+import com.retail.dolphinpos.domain.repositories.auth.StoreRegistersRepository
 
 class StoreRegisterRepositoryImpl(
     private val api: ApiService,

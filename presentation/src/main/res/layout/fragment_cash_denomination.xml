@@ -132,6 +132,7 @@
                         android:layout_marginTop="@dimen/_3sdp"
                         android:enabled="false"
                         android:inputType="none"
+                        android:textColor="@color/black"
                         android:textAlignment="textStart"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
@@ -160,6 +161,7 @@
                             android:layout_height="0dp"
                             android:layout_rowWeight="1"
                             android:layout_columnWeight="1"
+                            android:textSize="@dimen/text_heading_large"
                             android:text="@string/_7" />
 
                         <com.google.android.material.button.MaterialButton
@@ -169,6 +171,7 @@
                             android:layout_height="0dp"
                             android:layout_rowWeight="1"
                             android:layout_columnWeight="1"
+                            android:textSize="@dimen/text_heading_large"
                             android:text="@string/_8" />
 
                         <com.google.android.material.button.MaterialButton
@@ -178,6 +181,7 @@
                             android:layout_height="0dp"
                             android:layout_rowWeight="1"
                             android:layout_columnWeight="1"
+                            android:textSize="@dimen/text_heading_large"
                             android:text="@string/_9" />
 
                         <com.google.android.material.button.MaterialButton
@@ -187,6 +191,7 @@
                             android:layout_height="0dp"
                             android:layout_rowWeight="1"
                             android:layout_columnWeight="1"
+                            android:textSize="@dimen/text_heading_large"
                             android:text="@string/_4" />
 
                         <com.google.android.material.button.MaterialButton
@@ -196,6 +201,7 @@
                             android:layout_height="0dp"
                             android:layout_rowWeight="1"
                             android:layout_columnWeight="1"
+                            android:textSize="@dimen/text_heading_large"
                             android:text="@string/_5" />
 
                         <com.google.android.material.button.MaterialButton
@@ -205,6 +211,7 @@
                             android:layout_height="0dp"
                             android:layout_rowWeight="1"
                             android:layout_columnWeight="1"
+                            android:textSize="@dimen/text_heading_large"
                             android:text="@string/_6" />
 
                         <com.google.android.material.button.MaterialButton
@@ -214,6 +221,7 @@
                             android:layout_height="0dp"
                             android:layout_rowWeight="1"
                             android:layout_columnWeight="1"
+                            android:textSize="@dimen/text_heading_large"
                             android:text="@string/_1" />
 
                         <com.google.android.material.button.MaterialButton
@@ -223,6 +231,7 @@
                             android:layout_height="0dp"
                             android:layout_rowWeight="1"
                             android:layout_columnWeight="1"
+                            android:textSize="@dimen/text_heading_large"
                             android:text="@string/_2" />
 
                         <com.google.android.material.button.MaterialButton
@@ -232,6 +241,7 @@
                             android:layout_height="0dp"
                             android:layout_rowWeight="1"
                             android:layout_columnWeight="1"
+                            android:textSize="@dimen/text_heading_large"
                             android:text="@string/_3" />
 
                         <com.google.android.material.button.MaterialButton
@@ -251,6 +261,7 @@
                             android:layout_height="0dp"
                             android:layout_rowWeight="1"
                             android:layout_columnWeight="1"
+                            android:textSize="@dimen/text_heading_large"
                             android:text="@string/_0" />
 
                         <com.google.android.material.button.MaterialButton
@@ -259,6 +270,7 @@
                             android:layout_width="0dp"
                             android:layout_height="0dp"
                             android:layout_rowWeight="1"
+                            android:textSize="@dimen/text_heading_large"
                             android:layout_columnWeight="1"
                             android:text="@string/_00" />
 

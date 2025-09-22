@@ -1,4 +1,4 @@
-package com.retail.dolphinpos.domain.model.active_user
+package com.retail.dolphinpos.domain.model.auth.active_user
 
 data class ActiveUserDetails(
     val id: Int = 0,

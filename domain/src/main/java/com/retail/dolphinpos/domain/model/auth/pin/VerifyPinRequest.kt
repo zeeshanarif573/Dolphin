@@ -1,4 +1,4 @@
-package com.retail.dolphinpos.domain.pin
+package com.retail.dolphinpos.domain.model.auth.pin
 
 data class VerifyPinRequest(
     val pin : String,

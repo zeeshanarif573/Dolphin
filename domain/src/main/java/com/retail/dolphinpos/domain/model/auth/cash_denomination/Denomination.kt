@@ -1,4 +1,4 @@
-package com.retail.dolphinpos.domain.model.cash_denomination
+package com.retail.dolphinpos.domain.model.auth.cash_denomination
 
 data class Denomination(
     val value: Double,

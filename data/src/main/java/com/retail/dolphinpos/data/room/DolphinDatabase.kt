@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.retail.dolphinpos.data.dao.UserDao
 import com.retail.dolphinpos.data.entities.user.ActiveUserDetailsEntity
+import com.retail.dolphinpos.data.entities.user.BatchEntity
 import com.retail.dolphinpos.data.entities.user.LocationEntity
 import com.retail.dolphinpos.data.entities.user.RegisterEntity
 import com.retail.dolphinpos.data.entities.user.StoreEntity
@@ -16,7 +17,8 @@ import com.retail.dolphinpos.data.entities.user.UserEntity
 @Database(
     entities = [UserEntity::class, StoreEntity::class,
         StoreLogoUrlEntity::class, LocationEntity::class,
-        RegisterEntity::class, ActiveUserDetailsEntity::class],
+        RegisterEntity::class, ActiveUserDetailsEntity::class,
+        BatchEntity::class],
     version = 1,
     exportSchema = false
 )

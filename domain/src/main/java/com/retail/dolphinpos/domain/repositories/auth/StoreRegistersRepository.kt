@@ -1,4 +1,4 @@
-package com.retail.dolphinpos.domain.repositories
+package com.retail.dolphinpos.domain.repositories.auth
 
 import com.retail.dolphinpos.domain.model.auth.login.response.Locations
 import com.retail.dolphinpos.domain.model.auth.login.response.Registers
