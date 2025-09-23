@@ -84,6 +84,7 @@ class SelectRegisterViewModel @Inject constructor(
                     preferenceManager.setRegister(true)
                     preferenceManager.setOccupiedLocationID(locationID)
                     preferenceManager.setOccupiedRegisterID(storeRegisterID)
+                    storeRegistersRepository.insertRegisterStatusDetailsIntoLocalDB(response.data)
                     _selectRegisterUiEvent.value = SelectRegisterUiEvent.NavigateToPinScreen
                 }
                 _selectRegisterUiEvent.value = SelectRegisterUiEvent.HideLoading

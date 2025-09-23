@@ -1,5 +1,6 @@
 package com.retail.dolphinpos.presentation.features.ui.auth.cash_denomination
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
@@ -9,11 +10,13 @@ import com.retail.dolphinpos.presentation.R
 import com.retail.dolphinpos.presentation.databinding.FragmentCashDenominationBinding
 import com.retail.dolphinpos.presentation.features.base.BaseFragment
 import com.retail.dolphinpos.presentation.features.base.setOnSafeClickListener
+import com.retail.dolphinpos.presentation.features.ui.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Date
+import java.util.Locale
 
 @AndroidEntryPoint
 class CashDenominationFragment :
@@ -52,6 +55,7 @@ class CashDenominationFragment :
             val storeId = arguments?.getInt("storeId")
             val registerId = arguments?.getInt("registerId")
             viewModel.startBatch(generateBatchNo(), userId, storeId, registerId)
+            startActivity(Intent(requireContext(), HomeActivity::class.java))
         }
 
         binding.openCashDrawerButton.setOnSafeClickListener {}

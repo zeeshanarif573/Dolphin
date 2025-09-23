@@ -1,10 +1,10 @@
 package com.retail.dolphinpos.data.di
 
 import com.retail.dolphinpos.data.dao.UserDao
-import com.retail.dolphinpos.data.repositories.auth.CashDenominationRepositoryImpl
-import com.retail.dolphinpos.data.repositories.auth.LoginRepositoryImpl
-import com.retail.dolphinpos.data.repositories.auth.StoreRegisterRepositoryImpl
-import com.retail.dolphinpos.data.repositories.auth.VerifyPinRepositoryImpl
+import com.retail.dolphinpos.data.repositories.CashDenominationRepositoryImpl
+import com.retail.dolphinpos.data.repositories.LoginRepositoryImpl
+import com.retail.dolphinpos.data.repositories.StoreRegisterRepositoryImpl
+import com.retail.dolphinpos.data.repositories.VerifyPinRepositoryImpl
 import com.retail.dolphinpos.data.service.ApiService
 import com.retail.dolphinpos.domain.repositories.auth.CashDenominationRepository
 import com.retail.dolphinpos.domain.repositories.auth.LoginRepository

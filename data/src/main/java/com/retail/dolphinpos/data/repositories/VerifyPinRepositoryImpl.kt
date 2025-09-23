@@ -1,4 +1,4 @@
-package com.retail.dolphinpos.data.repositories.auth
+package com.retail.dolphinpos.data.repositories
 
 import com.retail.dolphinpos.data.dao.UserDao
 import com.retail.dolphinpos.data.mapper.UserMapper

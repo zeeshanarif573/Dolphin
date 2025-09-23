@@ -10,6 +10,7 @@ import com.retail.dolphinpos.data.entities.user.ActiveUserDetailsEntity
 import com.retail.dolphinpos.data.entities.user.BatchEntity
 import com.retail.dolphinpos.data.entities.user.LocationEntity
 import com.retail.dolphinpos.data.entities.user.RegisterEntity
+import com.retail.dolphinpos.data.entities.user.RegisterStatusEntity
 import com.retail.dolphinpos.data.entities.user.StoreEntity
 import com.retail.dolphinpos.data.entities.user.StoreLogoUrlEntity
 import com.retail.dolphinpos.data.entities.user.UserEntity
@@ -18,7 +19,7 @@ import com.retail.dolphinpos.data.entities.user.UserEntity
     entities = [UserEntity::class, StoreEntity::class,
         StoreLogoUrlEntity::class, LocationEntity::class,
         RegisterEntity::class, ActiveUserDetailsEntity::class,
-        BatchEntity::class],
+        BatchEntity::class, RegisterStatusEntity::class],
     version = 1,
     exportSchema = false
 )

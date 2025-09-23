@@ -119,4 +119,12 @@
     <string name="no_internet">Please check your connection and try again.</string>
     <string name="registers_in_use">All registers are in use. Please add more register from Portal.</string>
 
+    <string name="home">Home</string>
+    <string name="products">Products</string>
+    <string name="orders">Orders</string>
+    <string name="inventory">Inventory</string>
+    <string name="reports">Reports</string>
+    <string name="quick_access">Quick Access</string>
+    <string name="setup">Setup</string>
+
 </resources>

@@ -4,6 +4,7 @@ import com.retail.dolphinpos.data.entities.user.ActiveUserDetailsEntity
 import com.retail.dolphinpos.data.entities.user.BatchEntity
 import com.retail.dolphinpos.data.entities.user.LocationEntity
 import com.retail.dolphinpos.data.entities.user.RegisterEntity
+import com.retail.dolphinpos.data.entities.user.RegisterStatusEntity
 import com.retail.dolphinpos.data.entities.user.StoreEntity
 import com.retail.dolphinpos.data.entities.user.StoreLogoUrlEntity
 import com.retail.dolphinpos.data.entities.user.UserEntity
@@ -14,8 +15,7 @@ import com.retail.dolphinpos.domain.model.auth.login.response.Locations
 import com.retail.dolphinpos.domain.model.auth.login.response.Registers
 import com.retail.dolphinpos.domain.model.auth.login.response.Store
 import com.retail.dolphinpos.domain.model.auth.login.response.StoreLogoUrl
-import java.text.SimpleDateFormat
-import java.util.Locale
+import com.retail.dolphinpos.domain.model.auth.select_registers.reponse.UpdateStoreRegisterData
 
 object UserMapper {
 
@@ -98,6 +98,16 @@ object UserMapper {
             userId = batch.userId,
             registerId = batch.registerId,
             startingCashAmount = batch.startingCashAmount
+        )
+    }
+
+    fun toRegisterStatusEntity(updateStoreRegisterData: UpdateStoreRegisterData): RegisterStatusEntity {
+        return RegisterStatusEntity(
+            storeId = updateStoreRegisterData.storeId,
+            locationId = updateStoreRegisterData.locationId,
+            storeRegisterId = updateStoreRegisterData.storeRegisterId,
+            status = updateStoreRegisterData.status,
+            updatedAt = updateStoreRegisterData.updatedAt
         )
     }
 
@@ -288,6 +298,16 @@ object UserMapper {
             name = registerEntity.name,
             status = registerEntity.status,
             locationId = registerEntity.locationId
+        )
+    }
+
+    fun toRegisterStatus(registerStatusEntity: RegisterStatusEntity): UpdateStoreRegisterData {
+        return UpdateStoreRegisterData(
+            storeId = registerStatusEntity.storeId,
+            locationId = registerStatusEntity.locationId,
+            storeRegisterId = registerStatusEntity.storeRegisterId,
+            status = registerStatusEntity.status,
+            updatedAt = registerStatusEntity.updatedAt
         )
     }
 
