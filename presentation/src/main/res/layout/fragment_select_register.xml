@@ -226,6 +226,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/dataLayout"
+                        android:backgroundTint="@color/primary"
                         android:layout_marginHorizontal="@dimen/_30sdp"
                         android:layout_marginTop="@dimen/_15sdp"
                         android:text="@string/button_continue" />

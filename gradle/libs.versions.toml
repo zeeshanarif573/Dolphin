@@ -43,6 +43,7 @@ fragmentTesting = "1.8.6"
 navigationFragmentKtx = "2.9.3"
 navigationUiKtx = "2.9.3"
 mixPanel = "8.2.0"
+flexbox = "3.0.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -95,6 +96,7 @@ androidx-fragment-testing = { group = "androidx.fragment", name = "fragment-test
 androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigationFragmentKtx" }
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 mixpanel = { module = "com.mixpanel.android:mixpanel-android", version = "mixPanel" }
+google-flexbox = { group = "com.google.android.flexbox", name = "flexbox", version.ref = "flexbox" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

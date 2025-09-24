@@ -1,45 +1,609 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/light_grey"
     android:orientation="horizontal">
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1"
+        android:layout_weight="1.1"
         android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="match_parent"
             android:layout_height="@dimen/_12sdp"
             android:layout_marginHorizontal="@dimen/_2sdp"
-            android:background="@color/primary">
+            android:background="@drawable/cart_bg_box"
+            android:backgroundTint="@color/primary"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_2sdp">
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/small_order_icon"
+                android:drawablePadding="@dimen/_1sdp"
+                android:fontFamily="@font/general_sans_medium"
+                android:text="Order: #524184"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/general_sans_medium"
+                android:text="Cart Item: 10"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableRight="@drawable/small_non_member_icon"
+                android:drawablePadding="@dimen/_1sdp"
+                android:fontFamily="@font/general_sans_medium"
+                android:text="Non Member"
+                android:textAlignment="textEnd"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cartView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/cart_bg_box"
-            android:layout_margin="@dimen/_2sdp"/>
+            android:layout_marginHorizontal="@dimen/_2sdp"
+            android:layout_marginVertical="@dimen/_2sdp"
+            android:paddingTop="@dimen/_2sdp"
+            android:paddingBottom="@dimen/_5sdp"
+            tools:listitem="@layout/item_cart"
+            android:background="@drawable/cart_bg_box" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/cart_bg_box"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="5dp"
+                android:background="@color/primary" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_3sdp"
+                android:layout_marginTop="@dimen/_3sdp">
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/general_sans_semi_bold"
+                    android:text="@string/subtotal"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/general_sans_semi_bold"
+                    android:text="$119.60"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_3sdp"
+                android:layout_marginVertical="@dimen/_1sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:text="@string/discount"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:text="-$15"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_3sdp"
+                android:layout_marginBottom="@dimen/_1sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:text="@string/cash_discount"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:text="-$7"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_3sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:text="@string/tax"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:text="-$12"
+                    android:textColor="@color/black"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:text="-------------------------------------------------------------------------------------------" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_3sdp"
+                android:layout_marginBottom="@dimen/_3sdp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/general_sans_semi_bold"
+                    android:text="@string/total"
+                    android:textColor="@color/primary"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/general_sans_semi_bold"
+                    android:text="$109.26"
+                    android:textColor="@color/primary"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_1sdp"
+                android:layout_weight="1"
+                android:src="@drawable/clear_cart_btn" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_1sdp"
+                android:layout_weight="1"
+                android:src="@drawable/hold_cart_btn" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_1sdp"
+                android:layout_weight="1"
+                android:src="@drawable/price_check_btn" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_1sdp"
+                android:layout_weight="1"
+                android:src="@drawable/print_last_receipt_btn" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/general_sans_medium"
+                android:text="@string/payment_amount"
+                android:textColor="@color/black" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="@dimen/_1sdp"
+                android:background="@drawable/cart_bg_box"
+                android:drawableRight="@drawable/clear_text_icon"
+                android:fontFamily="@font/general_sans_medium"
+                android:paddingHorizontal="@dimen/_3sdp"
+                android:hint="0.0" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="1"
+                    android:text="@string/_7"
+                    android:textSize="@dimen/_8sdp"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:background="@drawable/pricing_calculator_bg_box_grey" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="1"
+                    android:text="@string/_8"
+                    android:textSize="@dimen/_8sdp"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:background="@drawable/pricing_calculator_bg_box_grey" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="1"
+                    android:text="@string/_9"
+                    android:textSize="@dimen/_8sdp"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:background="@drawable/pricing_calculator_bg_box_grey" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="1"
+                    android:text="$1"
+                    android:textSize="@dimen/_8sdp"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:background="@drawable/pricing_calculator_bg_box_blue" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="1"
+                    android:text="$5"
+                    android:textSize="@dimen/_8sdp"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:background="@drawable/pricing_calculator_bg_box_blue" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:text="@string/_4"
+                    android:textSize="@dimen/_8sdp"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:textColor="@color/white"
+                    android:gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/pricing_calculator_bg_box_grey" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:text="@string/_5"
+                    android:textSize="@dimen/_8sdp"
+                    android:gravity="center"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:background="@drawable/pricing_calculator_bg_box_grey" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:text="@string/_6"
+                    android:textSize="@dimen/_8sdp"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:background="@drawable/pricing_calculator_bg_box_grey" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:text="$10"
+                    android:textSize="@dimen/_8sdp"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:background="@drawable/pricing_calculator_bg_box_blue" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:text="$20"
+                    android:textSize="@dimen/_8sdp"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:layout_weight="1"
+                    android:background="@drawable/pricing_calculator_bg_box_blue" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="1"
+                    android:text="@string/_1"
+                    android:gravity="center"
+                    android:textSize="@dimen/_8sdp"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:textColor="@color/white"
+                    android:background="@drawable/pricing_calculator_bg_box_grey" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="1"
+                    android:text="@string/_2"
+                    android:textSize="@dimen/_8sdp"
+                    android:gravity="center"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:textColor="@color/white"
+                    android:background="@drawable/pricing_calculator_bg_box_grey" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="1"
+                    android:text="@string/_3"
+                    android:textSize="@dimen/_8sdp"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:background="@drawable/pricing_calculator_bg_box_grey" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="1"
+                    android:text="$50"
+                    android:gravity="center"
+                    android:textSize="@dimen/_8sdp"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:textColor="@color/white"
+                    android:background="@drawable/pricing_calculator_bg_box_blue" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="1"
+                    android:text="$100"
+                    android:textSize="@dimen/_8sdp"
+                    android:gravity="center"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:textColor="@color/white"
+                    android:background="@drawable/pricing_calculator_bg_box_blue" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="1"
+                    android:text="7"
+                    android:textSize="@dimen/_8sdp"
+                    android:gravity="center"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:textColor="@color/white"
+                    android:background="@drawable/pricing_calculator_bg_box_blue" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="1"
+                    android:text="@string/_0"
+                    android:textSize="@dimen/_8sdp"
+                    android:gravity="center"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:textColor="@color/white"
+                    android:background="@drawable/pricing_calculator_bg_box_grey" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="1"
+                    android:text="@string/next"
+                    android:textSize="@dimen/_8sdp"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:background="@drawable/pricing_calculator_bg_box_blue" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="2"
+                    android:text="@string/cash"
+                    android:textSize="@dimen/_8sdp"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:drawableLeft="@drawable/cash_icon"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:textColor="@color/white"
+                    android:background="@drawable/pricing_calculator_bg_box_blue" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+            <androidx.appcompat.widget.LinearLayoutCompat
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="1"
+                    android:background="@color/light_grey" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="1"
+                    android:text="@string/_00"
+                    android:textSize="@dimen/_8sdp"
+                    android:gravity="center"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:textColor="@color/white"
+                    android:background="@drawable/pricing_calculator_bg_box_grey" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="1"
+                    android:text="@string/clear"
+                    android:textSize="@dimen/_8sdp"
+                    android:gravity="center"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:textColor="@color/white"
+                    android:background="@drawable/pricing_calculator_bg_box_blue" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_weight="2"
+                    android:text="@string/card"
+                    android:paddingHorizontal="@dimen/_10sdp"
+                    android:drawableLeft="@drawable/card_icon"
+                    android:textSize="@dimen/_8sdp"
+                    android:gravity="center"
+                    android:fontFamily="@font/general_sans_medium"
+                    android:textColor="@color/white"
+                    android:background="@drawable/pricing_calculator_bg_box_green" />
+
+            </androidx.appcompat.widget.LinearLayoutCompat>
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
+        android:id="@+id/categoriesView"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.6" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/productsView"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1.2" />
-
-    <androidx.appcompat.widget.LinearLayoutCompat
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>

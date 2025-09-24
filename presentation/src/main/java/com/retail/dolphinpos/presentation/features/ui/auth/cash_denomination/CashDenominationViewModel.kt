@@ -37,9 +37,6 @@ class CashDenominationViewModel @Inject constructor(
         initializeDenominations()
     }
 
-    /**
-     * Initialize the list of denominations with standard US currency values
-     */
     private fun initializeDenominations() {
         val denominationsList = listOf(
             // Cash denominations

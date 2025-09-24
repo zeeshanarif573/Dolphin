@@ -124,9 +124,7 @@
         <item name="android:insetBottom">0dp</item>
     </style>
 
-
     <style name="Widget.Button.Primary" parent="Widget.Button.Base">
-        <item name="backgroundTint">@color/primary</item>
         <item name="android:textColor">@android:color/white</item>
     </style>
 

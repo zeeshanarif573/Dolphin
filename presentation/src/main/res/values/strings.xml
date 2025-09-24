@@ -21,6 +21,7 @@
     <string name="select_locations_hint">--Select Locations--</string>
     <string name="enter_pin_code">Enter PIN Code</string>
     <string name="clear">Clear</string>
+    <string name="card">Card</string>
     <string name="next">Next</string>
     <string name="_0">0</string>
     <string name="_3">3</string>
@@ -126,5 +127,16 @@
     <string name="reports">Reports</string>
     <string name="quick_access">Quick Access</string>
     <string name="setup">Setup</string>
+
+    <string name="subtotal">Subtotal</string>
+    <string name="discount">Discount</string>
+    <string name="cash_discount">Cash Discount</string>
+    <string name="tax">Tax</string>
+    <string name="total">Total:</string>
+    <string name="payment_amount">Payment Amount*</string>
+    <string name="clear_cart">Clear Cart</string>
+    <string name="hold_cart">Hold Cart</string>
+    <string name="price_check">Price Check</string>
+    <string name="print_last_receipt">Print Last Receipt</string>
 
 </resources>
